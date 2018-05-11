@@ -1,1 +1,6 @@
+# local copy of website
 learnrubythehardway.org/
+
+# OS files
+*.DS_Store
+
