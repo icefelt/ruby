@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 7: More Printing</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex7.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex7.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex7.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 7: More Printing</h1>
+            <p>Now we are going to do a bunch of exercises where you just type code in and make it run.  I won't be explaining this exercise because it is more of the same.  The purpose is to build up your chops.  See you in a few exercises, and <em>do not skip!</em>  Do not <em>paste!</em></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex7.rb-idio.html-1"></a><span class="nb">puts</span> <span class="s2">&quot;Mary had a little lamb.&quot;</span>
+<a name="ruby--ex7.rb-idio.html-2"></a><span class="nb">puts</span> <span class="s2">&quot;Its fleece was white as </span><span class="si">#{</span><span class="s1">&#39;snow&#39;</span><span class="si">}</span><span class="s2">.&quot;</span>
+<a name="ruby--ex7.rb-idio.html-3"></a><span class="nb">puts</span> <span class="s2">&quot;And everywhere that Mary went.&quot;</span>
+<a name="ruby--ex7.rb-idio.html-4"></a><span class="nb">puts</span> <span class="s2">&quot;.&quot;</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># what&#39;d that do?</span>
+<a name="ruby--ex7.rb-idio.html-5"></a>
+<a name="ruby--ex7.rb-idio.html-6"></a><span class="n">end1</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
+<a name="ruby--ex7.rb-idio.html-7"></a><span class="n">end2</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span>
+<a name="ruby--ex7.rb-idio.html-8"></a><span class="n">end3</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span>
+<a name="ruby--ex7.rb-idio.html-9"></a><span class="n">end4</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span>
+<a name="ruby--ex7.rb-idio.html-10"></a><span class="n">end5</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
+<a name="ruby--ex7.rb-idio.html-11"></a><span class="n">end6</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span>
+<a name="ruby--ex7.rb-idio.html-12"></a><span class="n">end7</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span>
+<a name="ruby--ex7.rb-idio.html-13"></a><span class="n">end8</span> <span class="o">=</span> <span class="s2">&quot;u&quot;</span>
+<a name="ruby--ex7.rb-idio.html-14"></a><span class="n">end9</span> <span class="o">=</span> <span class="s2">&quot;r&quot;</span>
+<a name="ruby--ex7.rb-idio.html-15"></a><span class="n">end10</span> <span class="o">=</span> <span class="s2">&quot;g&quot;</span>
+<a name="ruby--ex7.rb-idio.html-16"></a><span class="n">end11</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span>
+<a name="ruby--ex7.rb-idio.html-17"></a><span class="n">end12</span> <span class="o">=</span> <span class="s2">&quot;r&quot;</span>
+<a name="ruby--ex7.rb-idio.html-18"></a>
+<a name="ruby--ex7.rb-idio.html-19"></a><span class="c1"># watch that print vs. puts on this line what&#39;s it do?</span>
+<a name="ruby--ex7.rb-idio.html-20"></a><span class="nb">print</span> <span class="n">end1</span> <span class="o">+</span> <span class="n">end2</span> <span class="o">+</span> <span class="n">end3</span> <span class="o">+</span> <span class="n">end4</span> <span class="o">+</span> <span class="n">end5</span> <span class="o">+</span> <span class="n">end6</span>
+<a name="ruby--ex7.rb-idio.html-21"></a><span class="nb">puts</span> <span class="n">end7</span> <span class="o">+</span> <span class="n">end8</span> <span class="o">+</span> <span class="n">end9</span> <span class="o">+</span> <span class="n">end10</span> <span class="o">+</span> <span class="n">end11</span> <span class="o">+</span> <span class="n">end12</span>
+</pre></div>
+</td></tr></table><div class="section" id="what-you-should-see">
+<h1>What You Should See</h1>
+<div class="highlight"><pre><a name="ruby--ex7.sh-idio-shint-pyg.html-1"></a><span class="gp">$</span> ruby ex7.rb
+<a name="ruby--ex7.sh-idio-shint-pyg.html-2"></a><span class="go">Mary had a little lamb.</span>
+<a name="ruby--ex7.sh-idio-shint-pyg.html-3"></a><span class="go">Its fleece was white as snow.</span>
+<a name="ruby--ex7.sh-idio-shint-pyg.html-4"></a><span class="go">And everywhere that Mary went.</span>
+<a name="ruby--ex7.sh-idio-shint-pyg.html-5"></a><span class="go">..........</span>
+<a name="ruby--ex7.sh-idio-shint-pyg.html-6"></a><span class="go">CheeseBurger</span>
+</pre></div></div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<p>For these next few exercises, you will have the exact same Study Drills.</p>
+<ol class="arabic simple">
+<li>Go back through and write a comment on what each line does.</li>
+<li>Read each one backward or out loud to find your errors.</li>
+<li>From now on, when you make mistakes, write down on a piece of paper what kind of mistake you made.</li>
+<li>When you go to the next exercise, look at the mistakes you have made and try not to make them in this new one.</li>
+<li>Remember that everyone makes mistakes.  Programmers are like magicians who fool everyone into thinking they are perfect and never wrong, but it's all an act.  They make mistakes all the time.</li>
+</ol>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<dl class="docutils">
+<dt>Why are you using the variable named 'snow'?</dt>
+<dd>That's actually not a variable: it is just a string with the word <tt class="docutils literal">snow</tt> in it. A variable wouldn't have the single-quotes around it.</dd>
+<dt>Is it normal to write an English comment for every line of code like you say to do in Study Drill 1?</dt>
+<dd>No, you write comments only to explain difficult to understand code or why you did something.  Why is usually much more important, and then you try to write the code so that it explains how something is being done on its own. However, sometimes you have to write such nasty code to solve a problem that it does need a comment on every line.  In this case it's strictly for you practice translating code to English.</dd>
+<dt>Can I use single-quotes or double-quotes to make a string or do they do different things?</dt>
+<dd>In Ruby the <tt class="docutils literal">&quot;</tt> (double-quote) tell Ruby to replace variables it finds with <tt class="docutils literal">#{}</tt>, but the <tt class="docutils literal">'</tt> (single-quote) tells Ruby to leave the string alone and ignore any variables inside it.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 1: A Good First Program</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex1.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex1.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex1.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 1: A Good First Program</h1>
+            <p>You should have spent a good amount of time in Exercise 0 learning how to install a text editor, run the text editor, run the Terminal, and work with both of them.  If you haven't done that, then do not go on. You will not have a good time.  This is the only time I'll start an exercise with a warning that you should not skip or get ahead of yourself.</p>
+<p>Type the following text into a single file named <tt class="docutils literal">ex1.rb</tt>.  Ruby works best with files ending in <tt class="docutils literal">.rb</tt>.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex1.rb-idio.html-1"></a><span class="nb">puts</span> <span class="s2">&quot;Hello World!&quot;</span>
+<a name="ruby--ex1.rb-idio.html-2"></a><span class="nb">puts</span> <span class="s2">&quot;Hello Again&quot;</span>
+<a name="ruby--ex1.rb-idio.html-3"></a><span class="nb">puts</span> <span class="s2">&quot;I like typing this.&quot;</span>
+<a name="ruby--ex1.rb-idio.html-4"></a><span class="nb">puts</span> <span class="s2">&quot;This is fun.&quot;</span>
+<a name="ruby--ex1.rb-idio.html-5"></a><span class="nb">puts</span> <span class="s2">&quot;Yay! Printing.&quot;</span>
+<a name="ruby--ex1.rb-idio.html-6"></a><span class="nb">puts</span> <span class="s2">&quot;I&#39;d much rather you &#39;not&#39;.&quot;</span>
+<a name="ruby--ex1.rb-idio.html-7"></a><span class="nb">puts</span> <span class="s1">&#39;I &quot;said&quot; do not touch this.&#39;</span>
+</pre></div>
+</td></tr></table><p>If you are on Mac OS X then this is what your text editor might look like if you use <tt class="docutils literal">TextWrangler</tt>:</p>
+<div class="figure align-center">
+<img alt="_static/ruby/osx_textwrangler.png" src="_static/ruby/osx_textwrangler.png" />
+</div>
+<p>If you are on Windows using <tt class="docutils literal">Notepad++</tt> then this is what it would look like:</p>
+<div class="figure align-center">
+<img alt="_static/ruby/win_notepadpp_ex1.png" src="_static/ruby/win_notepadpp_ex1.png" />
+</div>
+<p>Don't worry if your editor doesn't look exactly the same, it should be close though.  When you create this file, keep in mind these points:</p>
+<ol class="arabic simple">
+<li>I did not type the line numbers on the left. Those are printed in the book so I can talk about specific lines by saying, &quot;See line 5...&quot;  You do not type line numbers into Ruby scripts.</li>
+<li>I have the <tt class="docutils literal">puts</tt> at the beginning of the line and it looks exactly the same as what I have in <tt class="docutils literal">ex1.rb</tt>.  Exactly means exactly, not kind of sort of the same.  Every single character has to match for it to work. Color doesn't matter, only the characters you type.</li>
+</ol>
+<p>In Terminal <em>run</em> the file by typing:</p>
+<pre class="code console literal-block">
+<span class="generic output">ruby ex1.rb</span>
+</pre>
+<p>If you did it right then you should see the same output as I in the <em>What You Should See</em> section of this exercise. If not, you have done something wrong.  No, the computer is not wrong.</p>
+<div class="section" id="what-you-should-see">
+<h1>What You Should See</h1>
+<p>On Mac OS X in the Terminal you should see this:</p>
+<div class="figure align-center">
+<img alt="_static/ruby/osx_terminal_ex1.png" src="_static/ruby/osx_terminal_ex1.png" />
+</div>
+<p>On Windows in PowerShell you should see this:</p>
+<div class="figure align-center">
+<img alt="_static/ruby/win_powershell_ex1.png" src="_static/ruby/win_powershell_ex1.png" />
+</div>
+<p>You may see different names, before the <tt class="docutils literal">ruby ex1.rb</tt> command, but the important part is that you type the command and see the output is the same as mine.</p>
+<p>If you have an error it will look like this:</p>
+<pre class="literal-block">
+&gt; ruby ex1.rb
+ex1.rb:3: syntax error, unexpected tCONSTANT, expecting $end
+puts &quot;I like typing this.&quot;
+</pre>
+<p>It's important that you can read these errors messages because you will be making many of these mistakes.  Even I make many of these mistakes.  Let's look at this line by line.</p>
+<ol class="arabic simple">
+<li>We ran our command in the Terminal to run the <tt class="docutils literal">ex1.rb</tt> script.</li>
+<li>Ruby tells us that the file <tt class="docutils literal">ex1.rb</tt> has an error on line 3.  The type of error is &quot;syntax error&quot;, and then some programmer jargon you can usually ignore.</li>
+<li>It prints the offending line of code for us to see it.</li>
+</ol>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p>If you are from another country, and you get errors about ASCII encodings, then put this at the top of your Ruby scripts:</p>
+<pre class="literal-block">
+# -*- coding: utf-8 -*-
+</pre>
+<p class="last">It will fix them so that you can use Unicode UTF-8 in your scripts without a problem.</p>
+</div>
+</div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<p>The Study Drills contain things you should <em>try</em> to do.  If you can't, skip it and come back later.</p>
+<p>For this exercise, try these things:</p>
+<ol class="arabic simple">
+<li>Make your script print another line.</li>
+<li>Make your script print only one of the lines.</li>
+<li>Put a <tt class="docutils literal">#</tt> (octothorpe) character at the beginning of a line.  What did it do?  Try to find out what this character does.</li>
+</ol>
+<p>From now on, I won't explain how each exercise works unless an exercise is different.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">An &quot;octothorpe&quot; is also called a &quot;pound&quot;, &quot;hash&quot;, &quot;mesh&quot;, or any number of names.  Pick the one that makes you chill out.</p>
+</div>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<p>These are <em>actual</em> questions that real students have asked when doing this exercise.</p>
+<dl class="docutils">
+<dt>How do you get colors in your editor?</dt>
+<dd>Save your file first as a <tt class="docutils literal">.rb</tt> file, such as <tt class="docutils literal">ex1.rb</tt>.  Then you'll have color when you type.</dd>
+<dt>I get <tt class="docutils literal">ruby: No such file or directory <span class="pre">--</span> ex1.rb (LoadError)</tt>.</dt>
+<dd>You need to be in the same directory as the file you created.  Make sure you use the <tt class="docutils literal">cd</tt> command to go there first.  For example, if you saved your file in <tt class="docutils literal">lrthw/ex1.rb</tt>, then you would do <tt class="docutils literal">cd lrthw/</tt> before trying to run <tt class="docutils literal">ruby ex1.rb</tt>.  If you don't know what any of that means, then go through <em>Appendix A</em>.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

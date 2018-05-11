@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 17: More Files</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex17.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex17.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex17.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 17: More Files</h1>
+            <p>Now let's do a few more things with files.  We'll write a Ruby script to copy one file to another.  It'll be very short but will give you ideas about other things you can do with files.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex17.rb-idio.html-1"></a><span class="n">from_file</span><span class="p">,</span> <span class="n">to_file</span> <span class="o">=</span> <span class="no">ARGV</span>
+<a name="ruby--ex17.rb-idio.html-2"></a>
+<a name="ruby--ex17.rb-idio.html-3"></a><span class="nb">puts</span> <span class="s2">&quot;Copying from </span><span class="si">#{</span><span class="n">from_file</span><span class="si">}</span><span class="s2"> to </span><span class="si">#{</span><span class="n">to_file</span><span class="si">}</span><span class="s2">&quot;</span>
+<a name="ruby--ex17.rb-idio.html-4"></a>
+<a name="ruby--ex17.rb-idio.html-5"></a><span class="c1"># we could do these two on one line, how?</span>
+<a name="ruby--ex17.rb-idio.html-6"></a><span class="n">in_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">from_file</span><span class="p">)</span>
+<a name="ruby--ex17.rb-idio.html-7"></a><span class="n">indata</span> <span class="o">=</span> <span class="n">in_file</span><span class="o">.</span><span class="n">read</span>
+<a name="ruby--ex17.rb-idio.html-8"></a>
+<a name="ruby--ex17.rb-idio.html-9"></a><span class="nb">puts</span> <span class="s2">&quot;The input file is </span><span class="si">#{</span><span class="n">indata</span><span class="o">.</span><span class="n">length</span><span class="si">}</span><span class="s2"> bytes long&quot;</span>
+<a name="ruby--ex17.rb-idio.html-10"></a>
+<a name="ruby--ex17.rb-idio.html-11"></a><span class="nb">puts</span> <span class="s2">&quot;Does the output file exist? </span><span class="si">#{</span><span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">to_file</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<a name="ruby--ex17.rb-idio.html-12"></a><span class="nb">puts</span> <span class="s2">&quot;Ready, hit RETURN to continue, CTRL-C to abort.&quot;</span>
+<a name="ruby--ex17.rb-idio.html-13"></a><span class="vg">$stdin</span><span class="o">.</span><span class="n">gets</span>
+<a name="ruby--ex17.rb-idio.html-14"></a>
+<a name="ruby--ex17.rb-idio.html-15"></a><span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">to_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<a name="ruby--ex17.rb-idio.html-16"></a><span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">indata</span><span class="p">)</span>
+<a name="ruby--ex17.rb-idio.html-17"></a>
+<a name="ruby--ex17.rb-idio.html-18"></a><span class="nb">puts</span> <span class="s2">&quot;Alright, all done.&quot;</span>
+<a name="ruby--ex17.rb-idio.html-19"></a>
+<a name="ruby--ex17.rb-idio.html-20"></a><span class="n">out_file</span><span class="o">.</span><span class="n">close</span>
+<a name="ruby--ex17.rb-idio.html-21"></a><span class="n">in_file</span><span class="o">.</span><span class="n">close</span>
+</pre></div>
+</td></tr></table><p>The important thing to learn from this script is the function <tt class="docutils literal"><span class="pre">File.exist?(to_file)</span></tt> on line 8.  This can be broken down as, &quot;File! I want you to use your <tt class="docutils literal">exist?</tt> function to tell me if <tt class="docutils literal">to_file</tt> exists on the disk.&quot;  Yet another way to say this is, &quot;Get the <tt class="docutils literal">exist?</tt> function from <tt class="docutils literal">File</tt> and call it with the variable <tt class="docutils literal">to_file</tt>.&quot;  You'll learn more about this later, but for now you should study how you can call functions inside <tt class="docutils literal">File</tt> to do things with files.</p>
+<div class="section" id="what-you-should-see">
+<h1>What You Should See</h1>
+<p>Just like your other scripts, run this one with two arguments: the file to copy from and the file to copy it to.  I'm going to use a simple test file named <tt class="docutils literal">test.txt</tt>:</p>
+<div class="highlight"><pre><a name="ruby--ex17.sh-idio-shint-pyg.html-1"></a><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;This is a test file.&quot;</span> &gt; test.txt
+<a name="ruby--ex17.sh-idio-shint-pyg.html-2"></a><span class="gp">$</span> cat test.txt
+<a name="ruby--ex17.sh-idio-shint-pyg.html-3"></a><span class="go">This is a test file.</span>
+<a name="ruby--ex17.sh-idio-shint-pyg.html-4"></a><span class="gp">$</span> ruby ex17.rb test.txt new_file.txt
+<a name="ruby--ex17.sh-idio-shint-pyg.html-5"></a><span class="go">Copying from test.txt to new_file.txt</span>
+<a name="ruby--ex17.sh-idio-shint-pyg.html-6"></a><span class="go">The input file is 21 bytes long</span>
+<a name="ruby--ex17.sh-idio-shint-pyg.html-7"></a><span class="go">Does the output file exist? false</span>
+<a name="ruby--ex17.sh-idio-shint-pyg.html-8"></a><span class="go">Ready, hit RETURN to continue, CTRL-C to abort.</span>
+<a name="ruby--ex17.sh-idio-shint-pyg.html-9"></a>
+<a name="ruby--ex17.sh-idio-shint-pyg.html-10"></a><span class="go">Alright, all done.</span>
+</pre></div><p>It should work with any file.  Try a bunch more and see what happens.  Just be careful you do not blast an important file.</p>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Did you see the trick I did with <tt class="docutils literal">echo</tt> to make a file,
+and <tt class="docutils literal">cat</tt> to show the file?  You can learn how to do that in Appendix A.</p>
+</div>
+</div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<ol class="arabic simple">
+<li>This script is <em>really</em> annoying.  There's no need to ask you before doing the copy, and it prints too much out to the screen.  Try to make the script more friendly to use by removing features.</li>
+<li>See how short you can make the script.  I could make this one line long.</li>
+<li>Notice at the end of the <em>What You Should See</em> I used something called <tt class="docutils literal">cat</tt>?  It's an old command that &quot;con*cat*enates&quot; files together, but mostly it's just an easy way to print a file to the screen.  Type <tt class="docutils literal">man cat</tt> to read about it.</li>
+<li>Find out why you had to write <tt class="docutils literal">out_file.close</tt> in the code.</li>
+</ol>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<dl class="docutils">
+<dt>Why is the <tt class="docutils literal">'w'</tt> in quotes?</dt>
+<dd>That's a string. You've been using strings for a while now. Make sure you know what a string is.</dd>
+<dt>No way you can make this one line!</dt>
+<dd>That ; depends ; on ; how ; you ; define ; one ; line ; of ; code.</dd>
+<dt>Is it normal to feel like this exercise was really hard?</dt>
+<dd>Yes, it is totally normal.  Programming may not &quot;click&quot; for you until maybe even Exercise 36, or it might not until you finish the book and then make something with Ruby.  Everyone is different, so just keep going and keep reviewing exercises that you had trouble with until it clicks.  Be patient.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

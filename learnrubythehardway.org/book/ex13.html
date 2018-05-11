@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 13: Parameters, Unpacking, Variables</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex13.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex13.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex13.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 13: Parameters, Unpacking, Variables</h1>
+            <p>In this exercise we will cover one more input method you can use to pass variables to a script (script being another name for your <tt class="docutils literal">.rb</tt> files).  You know how you type <tt class="docutils literal">ruby ex13.rb</tt> to run the <tt class="docutils literal">ex13.rb</tt> file?  Well the <tt class="docutils literal">ex13.rb</tt> part of the command is called an &quot;argument.&quot;  What we'll do now is write a script that also accepts arguments.</p>
+<p>Type this program and I'll explain it in detail:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex13.rb-idio.html-1"></a><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">third</span> <span class="o">=</span> <span class="no">ARGV</span>
+<a name="ruby--ex13.rb-idio.html-2"></a>
+<a name="ruby--ex13.rb-idio.html-3"></a><span class="nb">puts</span> <span class="s2">&quot;Your first variable is: </span><span class="si">#{</span><span class="n">first</span><span class="si">}</span><span class="s2">&quot;</span>
+<a name="ruby--ex13.rb-idio.html-4"></a><span class="nb">puts</span> <span class="s2">&quot;Your second variable is: </span><span class="si">#{</span><span class="n">second</span><span class="si">}</span><span class="s2">&quot;</span>
+<a name="ruby--ex13.rb-idio.html-5"></a><span class="nb">puts</span> <span class="s2">&quot;Your third variable is: </span><span class="si">#{</span><span class="n">third</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</td></tr></table><p>The <tt class="docutils literal">ARGV</tt> is the &quot;argument variable,&quot; a very standard name in programming, that you will find used in many other languages.  This variable <em>holds</em> the arguments you pass to your Ruby script when you run it.  In the exercises you will get to play with this more and see what happens.</p>
+<p>Line 1 &quot;unpacks&quot; <tt class="docutils literal">ARGV</tt> so that, rather than holding all the arguments, it gets assigned to four variables you can work with: <tt class="docutils literal">first</tt>, <tt class="docutils literal">second</tt>, and <tt class="docutils literal">third</tt>.  This may look strange, but &quot;unpack&quot; is probably the best word to describe what it does.  It just says, &quot;Take whatever is in ARGV, unpack it, and assign it to all of these variables on the left in order.&quot;</p>
+<p>After that we just print them out like normal.</p>
+<div class="section" id="what-you-should-see">
+<h1>What You Should See</h1>
+<p>Run the program like this (and you <em>must</em> pass <em>three</em> command line arguments):</p>
+<div class="highlight"><pre><a name="ruby--ex13.sh-idio-shint-pyg.html-1"></a><span class="gp">$</span> ruby ex13.rb first 2nd 3rd
+<a name="ruby--ex13.sh-idio-shint-pyg.html-2"></a><span class="go">Your first variable is: first</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-3"></a><span class="go">Your second variable is: 2nd</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-4"></a><span class="go">Your third variable is: 3rd</span>
+</pre></div><p>This is what you should see when you do a few different runs with different arguments:</p>
+<div class="highlight"><pre><a name="ruby--ex13.sh-idio-shint-pyg.html-1"></a><span class="gp">$</span> ruby ex13.rb stuff things that
+<a name="ruby--ex13.sh-idio-shint-pyg.html-2"></a><span class="go">Your first variable is: stuff</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-3"></a><span class="go">Your second variable is: things</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-4"></a><span class="go">Your third variable is: that</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-5"></a><span class="gp">$</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-6"></a><span class="gp">$</span> ruby ex13.rb apple orange grapefruit
+<a name="ruby--ex13.sh-idio-shint-pyg.html-7"></a><span class="go">Your first variable is: apple</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-8"></a><span class="go">Your second variable is: orange</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-9"></a><span class="go">Your third variable is: grapefruit</span>
+</pre></div><p>You can actually replace <tt class="docutils literal">first</tt>, <tt class="docutils literal">2nd</tt>, and <tt class="docutils literal">3rd</tt> with any three things you want.</p>
+<p>If you do not run it correctly, then you will get an error like this:</p>
+<div class="highlight"><pre><a name="ruby--ex13.sh-idio-shint-pyg.html-1"></a><span class="gp">$</span> ruby ex13.rb first 2nd
+<a name="ruby--ex13.sh-idio-shint-pyg.html-2"></a><span class="go">Your first variable is: first</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-3"></a><span class="go">Your second variable is: 2nd</span>
+<a name="ruby--ex13.sh-idio-shint-pyg.html-4"></a><span class="go">Your third variable is:</span>
+</pre></div><p>This happens when you do not put enough arguments on the command when you run it (in this case just <tt class="docutils literal">first 2nd</tt>).  Notice when I run it I give it <tt class="docutils literal">first 2nd</tt>, which caused it to give an error about &quot;need more than 3 values to unpack&quot; telling you that you didn't give it enough parameters.</p>
+</div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<ol class="arabic simple">
+<li>Try giving fewer than three arguments to your script.</li>
+<li>Write a script that has fewer arguments and one that has more.  Make sure you give the unpacked variables good names.</li>
+<li>Combine <tt class="docutils literal">gets.chomp</tt> with <tt class="docutils literal">ARGV</tt> to make a script that gets more input from a user.  text</li>
+</ol>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<dl class="docutils">
+<dt>What's the difference between <tt class="docutils literal">ARGV</tt> and <tt class="docutils literal">gets.chomp</tt>?</dt>
+<dd>The different has to do with where the user is required to give input.  If they give your script inputs on the command line, then you use <tt class="docutils literal">ARGV</tt>.  If you want them to input using the keyboard while the script is running, then use <tt class="docutils literal">gets.chomp</tt>.</dd>
+<dt>Are the command line arguments strings?</dt>
+<dd>Yes, they come in as strings, even if you typed numbers on the command line.  Use <tt class="docutils literal">.to_i</tt> to convert them just like with <tt class="docutils literal">gets.chomp.to_i</tt>.</dd>
+<dt>How do you use the command line?</dt>
+<dd>You should have learned to use it real quick by now, but if you need to learn it at this stage, then read the Command Line Crash Course I wrote for this book in Appendix A.</dd>
+<dt>I can't combine <tt class="docutils literal">ARGV</tt> with <tt class="docutils literal">gets.chomp</tt>.</dt>
+<dd>Don't overthink it.  Just slap two lines at the end of this script that uses <tt class="docutils literal">gets.chomp</tt> to get something and then print it. From that start playing with more ways to use both in the same script.</dd>
+<dt>Why can't I do this <tt class="docutils literal">gets.chomp = x</tt>?</dt>
+<dd>Because that's backward to how it should work.  Do it the way I do it and it'll work.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 50: Your First Website</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex50.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex50.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex50.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 50: Your First Website</h1>
+            <p>These final three exercises will be very hard and you should take your time with them.  In this first one you'll build a simple web version of one of your games.  Before you attempt this exercise you <em>must</em> have completed Exercise 46 successfully and have a working <tt class="docutils literal">gem</tt> installed such that you can install packages and know how to make a skeleton project directory.  If you don't remember how to do this, go back to Exercise 46 and do it all over again.</p>
+<div class="section" id="installing-sinatra">
+<h1>Installing Sinatra</h1>
+<p>Before creating your first web application, you'll first need to install the &quot;web framework&quot; called Sinatra.  The term &quot;framework&quot; generally means &quot;some package that makes it easier for me to do something.&quot;  In the world of web applications, people create &quot;web frameworks&quot; to compensate for the difficult problems they've encountered when making their own sites.  They share these common solutions in the form of a package you can download to bootstrap your own projects.</p>
+<p>In our case, we'll be using the Sinatra framework, but there are many, many, <em>many</em> others you can choose from.  For now, learn Sinatra, then branch out to another one when you're ready (or just keep using Sinatra since it's good enough).</p>
+<p>Using <tt class="docutils literal">gem</tt>, install Sinatra:</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> sudo gem install sinatra
+<span class="generic output">Password:
+Fetching: rack-1.5.2.gem (100%)
+Successfully installed rack-1.5.2
+Fetching: tilt-1.4.1.gem (100%)
+Successfully installed tilt-1.4.1
+Fetching: rack-protection-1.5.3.gem (100%)
+Successfully installed rack-protection-1.5.3
+Fetching: sinatra-1.4.5.gem (100%)
+Successfully installed sinatra-1.4.5
+Parsing documentation for rack-1.5.2
+Installing ri documentation for rack-1.5.2
+Parsing documentation for rack-protection-1.5.3
+Installing ri documentation for rack-protection-1.5.3
+Parsing documentation for sinatra-1.4.5
+Installing ri documentation for sinatra-1.4.5
+Parsing documentation for tilt-1.4.1
+Installing ri documentation for tilt-1.4.1
+Done installing documentation for rack, rack-protection, sinatra, tilt after 303 seconds
+4 gems installed
+</span><span class="generic prompt">$</span>
+</pre>
+<p>This will work on Linux and Mac OSX computers, but on Windows just drop the <tt class="docutils literal">sudo</tt> part of the <tt class="docutils literal">gem install</tt> command and it should work.  If not, go back to Exercise 46 and make sure you can do it reliably.  You may also see different versions and names of packages installed but should not see any errors.</p>
+</div>
+<div class="section" id="make-a-simple-hello-world-project">
+<h1>Make a Simple &quot;Hello World&quot; Project</h1>
+<p>Now you're going to make an initial very simple &quot;Hello World&quot; web application and project directory using Sinatra.  First, make your project directory based on the skeleton you have:</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd </span>projects
+<span class="generic prompt">$</span> cp -r skeleton gothonweb
+<span class="generic prompt">$</span> <span class="name builtin">cd </span>gothonweb
+<span class="generic prompt">$</span> mv bin/NAME bin/app.rb
+<span class="generic prompt">$</span> mv lib/NAME lib/gothonweb
+<span class="generic prompt">$</span> mv lib/NAME.rb lib/gothonweb.rb
+<span class="generic prompt">$</span> mv NAME.gemspec gothonweb.gemspec
+<span class="generic prompt">$</span> mv tests/test_NAME.rb tests/test_gothonweb.rb
+<span class="generic prompt">$</span> rm tests/NAME_tests.rb
+<span class="generic prompt">$</span> mkdir views
+<span class="generic prompt">$</span> mkdir static
+</pre>
+<p>You'll be taking the game from Exercise 43 and making it into a web application, so that's why you're calling it <tt class="docutils literal">gothonweb</tt>.  Before you do that, we need to create the most basic Sinatra application possible.  Put the following code into <tt class="docutils literal">bin/app.rb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-1"></a><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-2"></a>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-3"></a><span class="n">set</span> <span class="ss">:port</span><span class="p">,</span> <span class="mi">8080</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-4"></a><span class="n">set</span> <span class="ss">:static</span><span class="p">,</span> <span class="kp">true</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-5"></a><span class="n">set</span> <span class="ss">:public_folder</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-6"></a><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="s2">&quot;views&quot;</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-7"></a>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-8"></a><span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-9"></a>    <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-10"></a><span class="k">end</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-11"></a>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-12"></a><span class="n">get</span> <span class="s1">&#39;/hello/&#39;</span> <span class="k">do</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-13"></a>    <span class="n">greeting</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:greeting</span><span class="o">]</span> <span class="o">||</span> <span class="s2">&quot;Hi There&quot;</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-14"></a>    <span class="n">erb</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">&#39;greeting&#39;</span> <span class="o">=&gt;</span> <span class="n">greeting</span><span class="p">}</span>
+<a name="ruby--ex50--gothonweb--bin--app.rb-idio.html-15"></a><span class="k">end</span>
+</pre></div>
+</td></tr></table><p>Then run the application like this:</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> ruby bin/app.rb
+<span class="generic output">[2014-07-03 16:02:44] INFO  WEBrick 1.3.1
+[2014-07-03 16:02:44] INFO  ruby 2.1.2 (2014-05-08) [x86_64-darwin11.0]
+== Sinatra/1.4.5 has taken the stage on 8080 for development with backup from WEBrick
+[2014-07-03 16:02:44] INFO  WEBrick::HTTPServer#start: pid=20305 port=8080</span>
+</pre>
+<p>The output you see is Sinatra running your little &quot;hello world&quot; application. However, if you did this:</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> <span class="name builtin">cd </span>bin/   <span class="comment"># WRONG! WRONG! WRONG!
+</span><span class="generic prompt">$</span><span class="comment"></span> ruby bin/app.rb <span class="comment"># WRONG! WRONG! WRONG!</span>
+</pre>
+<p>Then you are doing it <em>wrong</em>.  In all Ruby projects you do not <tt class="docutils literal">cd</tt> into a lower directory to run things.  You stay at the top and run everything from there so that all of the system can access all the modules and files.  Go reread Exercise 46 to understand a project layout and how to use it if you did this.</p>
+<p>Finally, use your web browser and go to <tt class="docutils literal"><span class="pre">http://localhost:8080/</span></tt> and you should see two things.  First, in your browser you'll see <tt class="docutils literal">Hello, world!</tt>.  Second, you'll see your Terminal with new output like this:</p>
+<pre class="code console literal-block">
+<span class="generic output">::1 - - [03/Jul/2014 16:07:10] &quot;GET / HTTP/1.1&quot; 200 11 0.0136
+localhost - - [03/Jul/2014:16:07:10 PDT] &quot;GET / HTTP/1.1&quot; 200 11
+- -&gt; /</span>
+</pre>
+<p>Those are log messages that Sinatra prints out so you can see that the server is working, and what the browser is doing behind the scenes.  The log messages help you debug and figure out when you have problems.</p>
+<p>I haven't explained the way <em>any</em> of this web stuff works yet, because I want to get you setup and ready to roll so that I can explain it better in the next two exercises.  To accomplish this, I'll have you break your sinatra application in various ways and then restructure it so that you know how it's setup.</p>
+</div>
+<div class="section" id="what-s-happening-here">
+<h1>What's Happening Here?</h1>
+<p>Here's what's happening when your browser hits your application:</p>
+<ol class="arabic simple">
+<li>Your browser makes a network connection to your own computer, which is called <tt class="docutils literal">localhost</tt> and is a standard way of saying &quot;whatever my own computer is called on the network.&quot;  It also uses port 8080.</li>
+<li>Once it connects, it makes an HTTP request to the <tt class="docutils literal">bin/app.rb</tt> application and asks for the <tt class="docutils literal">/</tt> URL, which is commonly the first URL on any website.</li>
+<li>Inside <tt class="docutils literal">bin/app.rb</tt> you've got a list of URLs and what classes they match.  The only one we have is the <tt class="docutils literal"><span class="pre">'/',</span> 'index'</tt> mapping.  This means that whenever someone goes to <tt class="docutils literal">/</tt> with a browser, Sinatra will find the <tt class="docutils literal">class index</tt> and load it to handle the request.</li>
+<li>Now that Sinatra has found <tt class="docutils literal">class index</tt> it calls the <tt class="docutils literal">index.GET</tt> method on an instance of that class to actually handle the request.  This function runs and simply returns a string for what Sinatra should send to the browser.</li>
+<li>Finally, Sinatra has handled the request and sends this response to the browser, which is what you are seeing.</li>
+</ol>
+<p>Make sure you really understand this.  Draw up a diagram of how this information flows from your browser, to Sinatra, then to <tt class="docutils literal">index.GET</tt> and back to your browser.</p>
+</div>
+<div class="section" id="stopping-and-reloading-sinatra">
+<h1>Stopping and Reloading Sinatra</h1>
+<p>When you make a change to your Sinatra application you need to stop it and run it again.  Simply hit <tt class="docutils literal"><span class="pre">CTRL-c</span></tt> and it will stop.  Then run the command <tt class="docutils literal">ruby bin/app.rb</tt> again to start it.  You can also use a tool called <tt class="docutils literal">rerun</tt> to automate this.  You install <tt class="docutils literal">rerun</tt> using <tt class="docutils literal">sudo gem install rerun</tt> and then use it like this:</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> rerun <span class="literal string single">'ruby bin/app.rb'</span>
+</pre>
+<p>Now make a change to the <tt class="docutils literal">bin/app.rb</tt> file that's small and it should stop then rerun your Sinatra application.  It can take a few seconds for <tt class="docutils literal">rerun</tt> to detect the change, but it should work.</p>
+</div>
+<div class="section" id="fixing-errors">
+<h1>Fixing Errors</h1>
+<p>Go to <tt class="docutils literal"><span class="pre">http://localhost:8080/hello/</span></tt> with your browser and watch as Sinatra gives you a standard error page.  You're receiving this error because you have not created the <tt class="docutils literal">views/index.erb</tt> template yet which line 14 needs to work correctly.  We'll fix this in the next section, but for now read through this and familiarize yourself with what an error looks like.</p>
+<ol class="arabic simple">
+<li>Look at the top right of the page for the main error, &quot;Errno::ENOENT at /hello/&quot; followed by a better description, the file involves, and possible line.</li>
+<li>Look at the <tt class="docutils literal">BACKTRACE</tt> section. This shows you a trace of each line involved in the error that should look familiar to you from other errors you've seen.</li>
+<li>Look at the <tt class="docutils literal">GET</tt> and <tt class="docutils literal">POST</tt> section.  These will say there is no data, but in later exercises you'll be passing data that might show up here as variables from forms.</li>
+<li>Look at the <tt class="docutils literal">COOKIES</tt> section.  This is data your browser stores for each request, but we won't be using this in this book yet.</li>
+</ol>
+</div>
+<div class="section" id="create-basic-templates">
+<h1>Create Basic Templates</h1>
+<p>You can break your Sinatra application, but did you notice that &quot;Hello World&quot; isn't a very good HTML page?  This is a web application, and as such it needs a proper HTML response.  We'll create one in the second handler for <tt class="docutils literal">/hello/</tt> that's in line 12-15.  A &quot;handler&quot; is simple a chunk of code that runs when your browser goes to a new place in the application.  I'll explain a lot more in the next two exercises, but for now put this in the file <tt class="docutils literal">views/index.erb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex50--gothonweb--views--index.erb-idio.html-1"></a>&lt;html&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-2"></a>    &lt;head&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-3"></a>        &lt;title&gt;Gothons Of Planet Percal #25&lt;/title&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-4"></a>    &lt;/head&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-5"></a>&lt;body&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-6"></a>
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-7"></a>&lt;p&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-8"></a>I just wanted to say &lt;em style=&quot;color: green; font-size: 2em;&quot;&gt;&lt;%= greeting %&gt;&lt;/em&gt;.
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-9"></a>&lt;/p&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-10"></a>
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-11"></a>&lt;/body&gt;
+<a name="ruby--ex50--gothonweb--views--index.erb-idio.html-12"></a>&lt;/html&gt;
+</pre></div>
+</td></tr></table><p>If you know what HTML is, then this should look fairly familiar. If not, research HTML and try writing a few web pages by hand so you know how it works.  This HTML file, is a <em>template</em>, which means that Sinatra will fill in &quot;holes&quot; in the text depending on variables you pass in to the template.  Every place you see <tt class="docutils literal">$greeting</tt> will be a variable you'll pass to the template that alters its contents.</p>
+<p>Once you have that in place, visit <tt class="docutils literal"><span class="pre">http://localhost:8080/hello/?greeting=Hi</span></tt> in your browser and you should see a different message in green.  You should also be able to do a <tt class="docutils literal">View Source</tt> on the page in your browser to see that it is valid HTML.  You can also try <tt class="docutils literal"><span class="pre">http://localhost:8080/hello/</span></tt> alone and see the default message.</p>
+<p>This may have flown by you very fast, so let me explain how a template works:</p>
+<ol class="arabic simple">
+<li>The handler <tt class="docutils literal">get '/hello/' do</tt> specifies what happens when your browser goes to <tt class="docutils literal">/hello/</tt>.</li>
+<li>In the handler we are getting the <tt class="docutils literal"><span class="pre">?greeting=Hi</span></tt> part by using the <tt class="docutils literal">params</tt> Hashmap.  Sinatra builds <tt class="docutils literal">params</tt> from the request, and we want to make the <tt class="docutils literal">greeting</tt> from it.  Notice the <tt class="docutils literal">|| &quot;Hi There&quot;</tt> at the end?  This is a way of saying, &quot;Either use what's in <tt class="docutils literal">params</tt> or use 'Hi There'.&quot;</li>
+<li>Next the <tt class="docutils literal">/hello/</tt> handler uses the erb function (remember Ruby lets you not use parenthesis on function calls) to &quot;render&quot; the <tt class="docutils literal">:index</tt> view.  The <tt class="docutils literal">:locals = {'greeting' =&gt; greeting}</tt> part says, &quot;Also give this <tt class="docutils literal">greet</tt> view the local variables <tt class="docutils literal">greeting</tt> with this setting.&quot;</li>
+<li>When I say <tt class="docutils literal">:greet view</tt> I mean the file <tt class="docutils literal">views/index.erb</tt> you created above.  Sinatra knows this too and loads it for you, passing in the <tt class="docutils literal">greeting</tt> variable as you requested.</li>
+<li>The <tt class="docutils literal">views/index.erb</tt> file is called a template, and it has holes in it that is dynamically created.  The part that reads <tt class="docutils literal">&lt;%= greeting %&gt;</tt> does that, so Sinatra runs this, takes the resulting HTML, and sends it to your browser.</li>
+</ol>
+<p>To get deeper into this, change the greeting variable and the HTML to see what effect it has.  We will get more into how this works in the last two exercises of this book, but play with this some more and see what you can do.</p>
+</div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<ol class="arabic simple">
+<li>Read the documentation at <a class="reference external" href="http://http://www.sinatrarb.com/documentation.html">http://http://www.sinatrarb.com/documentation.html</a>.</li>
+<li>Experiment with everything you can find there, including their example code.</li>
+<li>Read about HTML5 and CSS.  It's a large topic but just try to get familiar with it.</li>
+<li>Put some content in <tt class="docutils literal">static/howdy.html</tt> and go to <a class="reference external" href="http://localhost:8080/howdy.html">http://localhost:8080/howdy.html</a>.  If it doesn't work, make sure your <tt class="docutils literal">app.rb</tt> file has the correct <tt class="docutils literal">:public_folder</tt> setting.</li>
+</ol>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<dl class="docutils">
+<dt>I can't seem to connect to <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a>.</dt>
+<dd>Try going to <a class="reference external" href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> instead.</dd>
+<dt>I can't use port 8080 on my computer.</dt>
+<dd>You probably have an anti-virus program installed that is using that port.  Try a different port by changing the <tt class="docutils literal">set :port, 8080</tt> line to a different number above 1024.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

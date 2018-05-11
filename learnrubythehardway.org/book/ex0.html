@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 0: The Setup</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex0.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex0.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex0.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 0: The Setup</h1>
+            <p>This exercise has no code.  It is simply the exercise you complete to get your computer to run Ruby.   You should follow these instructions as exactly as possible.  For example, Mac OS X computers already have Ruby 2, so do not install Ruby 3 (or any Ruby).</p>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you do not know how to use <tt class="docutils literal">PowerShell</tt> on Windows, <tt class="docutils literal">Terminal</tt> on
+OS X, or <tt class="docutils literal">bash</tt> on Linux then you need to go learn that first.  You should
+do the exercises in Appendix A first before continuing with these exercises.</p>
+</div>
+<div class="section" id="mac-os-x">
+<h1>Mac OS X</h1>
+<p>Do the following tasks to complete this exercise:</p>
+<ol class="arabic">
+<li><p class="first">Go to <a class="reference external" href="http://www.barebones.com/products/textwrangler/">http://www.barebones.com/products/textwrangler/</a> with your browser, get the <tt class="docutils literal">TextWrangler</tt> text editor, and install it.</p>
+</li>
+<li><p class="first">Put <tt class="docutils literal">TextWrangler</tt> (your editor) in your dock so you can reach it easily.</p>
+</li>
+<li><p class="first">Find your Terminal program.  Search for it.  You will find it.</p>
+</li>
+<li><p class="first">Put your Terminal in your dock as well.</p>
+</li>
+<li><p class="first">Run your Terminal program.  It won't look like much.</p>
+</li>
+<li><p class="first">In your Terminal program, run <tt class="docutils literal">ruby <span class="pre">-v</span></tt> to get your Ruby version.</p>
+</li>
+<li><p class="first">If <tt class="docutils literal">ruby</tt> says anything less than &quot;2.0&quot; then your Ruby is too old.  You have three choices at this point:</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>Upgrade your OS X to the latest version.  It's free now so there's no excuse.</li>
+<li>Go to <a class="reference external" href="https://www.ruby-lang.org/en/downloads/">https://www.ruby-lang.org/en/downloads/</a> and try one of the installers there.</li>
+<li>Ask a friend to help you install Ruby 2.x or greater.</li>
+</ol>
+</blockquote>
+</li>
+<li><p class="first">You should be back at a prompt similar to what you had before you typed <tt class="docutils literal">ruby <span class="pre">-v</span></tt>.  If not, find out why.</p>
+</li>
+<li><p class="first">Learn how to make a directory in the Terminal.</p>
+</li>
+<li><p class="first">Learn how to change into a directory in the Terminal.</p>
+</li>
+<li><p class="first">Use your editor to create a file in this directory.  You will make the file, &quot;Save&quot; or &quot;Save As...,&quot; and pick this directory.</p>
+</li>
+<li><p class="first">Go back to Terminal using just the keyboard to switch windows.</p>
+</li>
+<li><p class="first">Back in Terminal, can list the directory to see your newly created file.</p>
+</li>
+</ol>
+<div class="section" id="os-x-what-you-should-see">
+<h2>OS X: What You Should See</h2>
+<p>Here's me doing this on my OS X computer in Terminal.  Your computer might be different, but should be similar to this.</p>
+<pre class="code console literal-block">
+<span class="generic output">Last login: Sat Apr 24 00:56:54 on ttys001
+~ $ ruby -v
+ruby 2.1.2p95 (2014-05-08 revision 45877) [x86_64-darwin11.0]
+~ $ mkdir mystuff
+~ $ cd mystuff
+mystuff $ ls
+</span><span class="generic prompt">#</span> ... Use TextWrangler here to edit test.txt....
+<span class="generic output">mystuff $ ls
+test.txt
+mystuff $</span>
+</pre>
+</div>
+</div>
+<div class="section" id="windows">
+<h1>Windows</h1>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://notepad-plus-plus.org/">http://notepad-plus-plus.org/</a> with your browser, get the <tt class="docutils literal">Notepad++</tt> text editor, and install it. You do not need to be the administrator to do this.</li>
+<li>Make sure you can get to <tt class="docutils literal">Notepad++</tt> easily by putting it on your desktop and/or in <tt class="docutils literal">Quick Launch</tt>. Both options are available during setup.</li>
+<li>Run <tt class="docutils literal">PowerShell</tt> from the Start menu.  Search for it and you can just press <tt class="docutils literal">Enter</tt> to run it.</li>
+<li>Make a shortcut to it on your desktop and/or <tt class="docutils literal">Quick Launch</tt> for your convenience.</li>
+<li>Run your <tt class="docutils literal">PowerShell</tt> program (which I will call Terminal later).  It won't look like much.</li>
+<li>In your <tt class="docutils literal">PowerShell</tt> (Terminal) program, run <tt class="docutils literal">ruby <span class="pre">-v</span></tt>.  You run things in Terminal by just typing the command name and pressing <tt class="docutils literal">Enter</tt>.<ol class="loweralpha">
+<li>If you run <tt class="docutils literal">ruby</tt> and it's not there (<tt class="docutils literal">ruby is not recognized..</tt>).  Install it from <a class="reference external" href="http://rubyinstaller.org/">http://rubyinstaller.org/</a> or <a class="reference external" href="http://ruby.org/download">http://ruby.org/download</a>.</li>
+<li><em>Make</em> sure you install Ruby 2.0 or Ruby 2.1, but <em>not</em> Ruby 1.8 or 1.9.</li>
+<li>Close <tt class="docutils literal">PowerShell</tt> and then start it again to make sure Ruby now runs.  If it doesn't, restart may be required.</li>
+<li>You should now see <tt class="docutils literal">ruby <span class="pre">-v</span></tt> print out a version that is 2.1 or 2.0, not 1.9 or 1.8.</li>
+</ol>
+</li>
+<li>You should be back at a prompt similar to what you had before you typed <tt class="docutils literal">ruby</tt>.  If not, find out why.</li>
+<li>Learn how to make a directory in <tt class="docutils literal">PowerShell</tt> (Terminal).</li>
+<li>Learn how to change into a directory in <tt class="docutils literal">PowerShell</tt> (Terminal).</li>
+<li>Use your editor to create a file in this directory.  Make the file, <tt class="docutils literal">Save</tt> or <tt class="docutils literal">Save <span class="pre">As...</span></tt> and pick this directory.</li>
+<li>Go back to <tt class="docutils literal">PowerShell</tt> (Terminal) using just the keyboard to switch windows.  up if you can't figure it out.</li>
+<li>Back in <tt class="docutils literal">PowerShell</tt> (Terminal), list the directory to see your newly created file.</li>
+</ol>
+<p>From now on, when I say &quot;Terminal&quot; or &quot;shell&quot; I mean <tt class="docutils literal">PowerShell</tt> and that's what you should use.</p>
+<div class="section" id="windows-what-you-should-see">
+<h2>Windows: What You Should See</h2>
+<pre class="code console literal-block">
+<span class="generic prompt">&gt;</span> ruby -v
+<span class="generic output">ruby 2.1.2p95 (2014-05-08 revision 45877)
+</span><span class="generic prompt">&gt;</span> mkdir mystuff
+<span class="generic prompt">&gt;</span> <span class="name builtin">cd </span>mystuff
+<span class="generic output">
+... Here you would use Notepad++ to make test.txt in mystuff ...
+
+</span><span class="generic prompt">&gt;</span>
+<span class="generic prompt">&gt;</span> dir
+<span class="generic output"> Volume in drive C is
+ Volume Serial Number is 085C-7E02
+
+ Directory of C:\Documents and Settings\you\mystuff
+
+04.05.2010  23:32    &lt;DIR&gt;          .
+04.05.2010  23:32    &lt;DIR&gt;          ..
+04.05.2010  23:32                 6 test.txt
+               1 File(s)              6 bytes
+               2 Dir(s)  14 804 623 360 bytes free
+
+</span><span class="generic prompt">&gt;</span>
+</pre>
+<p>It is still correct if you see different information than mine, but yours should be similar.</p>
+</div>
+</div>
+<div class="section" id="linux">
+<h1>Linux</h1>
+<p>Linux is a varied operating system with a bunch of different ways to install software.  I'm assuming if you are running Linux then you know how to install packages so here are your instructions:</p>
+<ol class="arabic simple">
+<li>Use your Linux package manager and install the <tt class="docutils literal">gedit</tt> text editor.</li>
+<li>Make sure you can get to <tt class="docutils literal">gedit</tt> easily by putting it in your window manager's menu.<ol class="loweralpha">
+<li>Run <tt class="docutils literal">gedit</tt> so we can fix some stupid defaults it has.</li>
+<li>Open <tt class="docutils literal">Preferences</tt> and select the <tt class="docutils literal">Editor</tt> tab.</li>
+<li>Change <tt class="docutils literal">Tab width:</tt> to 4.</li>
+<li>Select (make sure a check mark is in) <tt class="docutils literal">Insert spaces instead of tabs</tt>.</li>
+<li>Turn on &quot;Automatic indentation&quot; as well.</li>
+<li>Open the <tt class="docutils literal">View</tt> tab and turn on &quot;Display line numbers.&quot;</li>
+</ol>
+</li>
+<li>Find your <tt class="docutils literal">Terminal</tt> program.  It could be called <tt class="docutils literal">GNOME Terminal</tt>, <tt class="docutils literal">Konsole</tt>, or <tt class="docutils literal">xterm</tt>.</li>
+<li>Put your <tt class="docutils literal">Terminal</tt> in your dock as well.</li>
+<li>Run your <tt class="docutils literal">Terminal</tt> program.  It won't look like much.</li>
+<li>In your <tt class="docutils literal">Terminal</tt> program, run <tt class="docutils literal">ruby <span class="pre">-v</span></tt>.  You run things in <tt class="docutils literal">Terminal</tt> by just typing the name and pressing <tt class="docutils literal">Enter</tt>.<ol class="loweralpha">
+<li>If you run <tt class="docutils literal">ruby <span class="pre">-v</span></tt> and it's not there, install it.  <em>Make sure you install Ruby 2.1 or 2.0 not Ruby 1.9 or 1.8</em></li>
+</ol>
+</li>
+<li>Type <tt class="docutils literal">quit()</tt> and hit <tt class="docutils literal">Enter</tt> to exit ruby.</li>
+<li>You should be back at a prompt similar to what you had before you typed <tt class="docutils literal">ruby <span class="pre">-v</span></tt>.  If not, find out why.</li>
+<li>Learn how to make a directory in <tt class="docutils literal">Terminal</tt>.</li>
+<li>Learn how to change into a directory in <tt class="docutils literal">Terminal</tt>.</li>
+<li>Use your editor to create a file in this directory.  Typically you will make the file, <tt class="docutils literal">Save</tt> or <tt class="docutils literal">Save <span class="pre">As...</span></tt>, and pick this directory.</li>
+<li>Go back to Terminal using just the keyboard to switch windows.  Look it up if you can't figure it out.</li>
+<li>Back in <tt class="docutils literal">Terminal</tt>, list the directory to see your newly created file.</li>
+</ol>
+<div class="section" id="linux-what-you-should-see">
+<h2>Linux: What You Should See</h2>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> ruby
+<span class="generic output">ruby 2.1.2p95 (2014-05-08 revision 45877)
+</span><span class="generic prompt">$</span> mkdir mystuff
+<span class="generic prompt">$</span> <span class="name builtin">cd </span>mystuff
+<span class="generic prompt">#</span> ... Use gedit here to edit test.txt ...
+<span class="generic prompt">$</span> ls
+<span class="generic output">test.txt
+</span><span class="generic prompt">$</span>
+</pre>
+<p>It is still correct if you see different information than mine, but yours should be similar.</p>
+</div>
+</div>
+<div class="section" id="finding-things-on-the-internet">
+<h1>Finding Things on the Internet</h1>
+<p>A major part of this book is learning to research programming topics online.  I'll tell you to &quot;search for this on the internet,&quot; and your job is to use a search engine to find the answer.  The reason I have you search instead of just giving you the answer is because I want you to be an independent learner who does not need my book when you're done with it.  If you can find the answers to your questions online then you are one step closer to not needing me, and that is my goal.</p>
+<p>Thanks to search engines such as Google you can easily find anything I tell you to find.  If I say, &quot;search online for the ruby array functions&quot; then you simply do this:</p>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://google.com/">http://google.com/</a></li>
+<li>Type: <tt class="docutils literal">ruby array functions</tt></li>
+<li>Read the websites listed to find the best answer.</li>
+</ol>
+<p>Here's a screenshot of me doing this search:</p>
+<div class="figure align-center">
+<img alt="_static/ruby/search_ruby.png" src="_static/ruby/search_ruby.png" />
+</div>
+</div>
+<div class="section" id="warnings-for-beginners">
+<h1>Warnings for Beginners</h1>
+<p>You are done with this exercise.  This exercise might be hard for you depending on your familiarity with your computer.  If it is difficult, take the time to read and study and get through it, because until you can do these very basic things you will find it difficult to get much programming done.</p>
+<p>If someone tells you to stop at a specific exercise in this book or to skip certain ones, you should ignore that person.  Anyone trying to hide knowledge from you, or worse, make you get it from them instead of through your own efforts, is trying to make you depend on them for your skills.  Don't listen to them and do the exercises anyway so that you learn how to educate yourself.</p>
+<p>If a programmer tells you to use <tt class="docutils literal">vim</tt> or <tt class="docutils literal">emacs</tt>, just say &quot;no.&quot;  These editors are for when you are a better programmer.  All you need right now is an editor that lets you put text into a file.  We will use <tt class="docutils literal">gedit</tt>, <tt class="docutils literal">TextWrangler</tt>, or <tt class="docutils literal">Notepad++</tt> (from now on called &quot;the text editor&quot; or &quot;a text editor&quot;) because it is simple and the same on all computers.  Professional programmers use these text editors so it is good enough for you starting out.</p>
+<p>A programmer will eventually tell you to use Mac OS X or Linux.  If the programmer likes fonts and typography, they'll tell you to get a Mac OS X computer.  If he likes control and has a huge beard, he'll tell you to install Linux.  Again, use whatever computer you have right now that works.  All you need is an editor, a Terminal, and Ruby.</p>
+<p>A programmer on OS X will try to make you use Homebrew or Macports but you should <em>not</em> use these.  All you need is Ruby, TextWrangler, and Terminal.  Homebrew and Macports are for install lots of software in a way that ruins your computer and requires more skills to fix than you or your programmer friend have.  Avoid it and your computer will stay sane while you are working through this book.</p>
+<p>A Ruby programmer will tell you to use &quot;idiomatic&quot; Ruby.  The word &quot;idiomatic&quot; means something different to Ruby programmers than it does to everyone else in the world.  To you and me &quot;idiomatic&quot; means &quot;a confusing phrase only a native speaker would know and should be avoided in well written language&quot;.  To a Ruby programmer &quot;idiomatic&quot; means &quot;way.easy.most.natural.people.all.do.unless.real.programmer&quot;.  The code in this book is idiomatic, but it is simple because you are a beginner.  When given a choice between a Ruby idiom and clear code for a beginner, I chose clear code for a beginner.  You should tell this Ruby programmer that it's a piece of cake to do idiomatic Ruby later when the whole ball of wax is front and center.</p>
+<p>Finally, this setup helps you do three things very reliably while you work on the exercises:</p>
+<ol class="arabic simple">
+<li><em>Write</em> exercises using your text editor, <tt class="docutils literal">gedit</tt> on Linux, <tt class="docutils literal">TextWrangler</tt> on OS X, or <tt class="docutils literal">Notepad++</tt> on Windows.</li>
+<li><em>Run</em> the exercises you wrote.</li>
+<li><em>Fix</em> them when they are broken.</li>
+<li>Repeat.</li>
+</ol>
+<p>Anything else will only confuse you, so stick to the plan.</p>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

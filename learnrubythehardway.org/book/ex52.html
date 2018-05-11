@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 52: The Start Of Your Web Game</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex52.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex52.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex52.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 52: The Start Of Your Web Game</h1>
+            <p>We're coming to the end of the book, and in this exercise I'm going to really challenge you.  When you're done, you'll be a reasonably competent Ruby beginner.  You'll still need to go through a few more books and write a couple more projects, but you'll have the skills to complete them.  The only thing in your way will be time, motivation, and resources.</p>
+<p>In this exercise, we won't make a complete game, but instead we'll make an &quot;engine&quot; that can run the game from Exercise 47 in the browser.  This will involve refactoring Exercise 43, mixing in the structure from Exercise 47, adding automated tests, and finally creating a web engine that can run the games.</p>
+<p>This exercise will be <em>huge</em>, and I predict you could spend anywhere from a week to months on it before moving on.  It's best to attack it in little chunks and do a bit a night, taking your time to make everything work before moving on.</p>
+<div class="section" id="refactoring-the-exercise-43-game">
+<h1>Refactoring the Exercise 43 Game</h1>
+<p>You've been altering the <tt class="docutils literal">gothonweb</tt> project for two exercises and you'll do it one more time in this exercise.  The skill you're learning is called &quot;refactoring,&quot; or as I like to call it, &quot;fixing stuff.&quot;  Refactoring is a term programmers use to describe the process of taking old code, and changing it to have new features or just to clean it up.  You've been doing this without even knowing it, as it's second nature to building software.</p>
+<p>What you'll do in this part is take the ideas from Exercise 47 of a testable &quot;map&quot; of Rooms, and the game from Exercise 43, and combine them together to create a new game structure.  It will have the same content, just &quot;refactored&quot; to have a better structure.</p>
+<p>The first step is to grab the code from <tt class="docutils literal">ex47/lib/ex47/game.rb</tt> and copy it to <tt class="docutils literal">lib/gothonweb/map.rb</tt> and copy the <tt class="docutils literal">ex47/tests/ex47_tests.rb</tt> file to <tt class="docutils literal">tests/map_tests.rb</tt> and run <tt class="docutils literal">rake test</tt> again to make sure it keeps working.  You'll need to change the require in <tt class="docutils literal">test_map.rb</tt> to match the new <tt class="docutils literal">gothonweb/map.rb</tt> location.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">I won't show you the output of a test run. Just assume that you should be doing it and it'll look like the above unless you have an error.</p>
+</div>
+<p>Once you have the code from Exercise 47 copied over, it's time to refactor it to have the Exercise 43 map in it.  I'm going to start by laying down the basic structure, and then you'll have an assignment to make the <tt class="docutils literal">map.rb</tt> file and the <tt class="docutils literal">map_tests.rb</tt> file complete.</p>
+<p>First you'll want to put the original <tt class="docutils literal">Room</tt> class into a module so put this right at the top of <tt class="docutils literal">map.rb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-1"></a><span class="k">module</span> <span class="nn">Map</span>
+</pre></div>
+</td></tr></table><p>Next you need to write up the rooms.  Here's the complete room descriptions, but you can also put in dummy text for these and then fill in the full text later when the game is working.  These go <em>after</em> the <tt class="docutils literal">Room</tt> class you already have from Exercise 47:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-1"></a>    <span class="no">CENTRAL_CORRIDOR</span> <span class="o">=</span> <span class="no">Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Central Corridor&quot;</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-2"></a>    <span class="s2">&quot;&quot;&quot;</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-3"></a><span class="s2">    The Gothons of Planet Percal #25 have invaded your ship and destroyed</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-4"></a><span class="s2">    your entire crew.  You are the last surviving member and your last</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-5"></a><span class="s2">    mission is to get the neutron destruct bomb from the Weapons Armory,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-6"></a><span class="s2">    put it in the bridge, and blow the ship up after getting into an </span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-7"></a><span class="s2">    escape pod.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-8"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-9"></a><span class="s2">    You&#39;re running down the central corridor to the Weapons Armory when</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-10"></a><span class="s2">    a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-11"></a><span class="s2">    flowing around his hate filled body.  He&#39;s blocking the door to the</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-12"></a><span class="s2">    Armory and about to pull a weapon to blast you.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-13"></a><span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-14"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-15"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-16"></a>    <span class="no">LASER_WEAPON_ARMORY</span> <span class="o">=</span> <span class="no">Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Laser Weapon Armory&quot;</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-17"></a>    <span class="s2">&quot;&quot;&quot;</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-18"></a><span class="s2">    Lucky for you they made you learn Gothon insults in the academy.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-19"></a><span class="s2">    You tell the one Gothon joke you know:</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-20"></a><span class="s2">    Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-21"></a><span class="s2">    The Gothon stops, tries not to laugh, then busts out laughing and can&#39;t move.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-22"></a><span class="s2">    While he&#39;s laughing you run up and shoot him square in the head</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-23"></a><span class="s2">    putting him down, then jump through the Weapon Armory door.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-24"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-25"></a><span class="s2">    You do a dive roll into the Weapon Armory, crouch and scan the room</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-26"></a><span class="s2">    for more Gothons that might be hiding.  It&#39;s dead quiet, too quiet.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-27"></a><span class="s2">    You stand up and run to the far side of the room and find the</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-28"></a><span class="s2">    neutron bomb in its container.  There&#39;s a keypad lock on the box</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-29"></a><span class="s2">    and you need the code to get the bomb out.  If you get the code</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-30"></a><span class="s2">    wrong 10 times then the lock closes forever and you can&#39;t</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-31"></a><span class="s2">    get the bomb.  The code is 3 digits.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-32"></a><span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-33"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-34"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-35"></a>    <span class="no">THE_BRIDGE</span> <span class="o">=</span> <span class="no">Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;The Bridge&quot;</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-36"></a>    <span class="s2">&quot;&quot;&quot;</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-37"></a><span class="s2">    The container clicks open and the seal breaks, letting gas out.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-38"></a><span class="s2">    You grab the neutron bomb and run as fast as you can to the</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-39"></a><span class="s2">    bridge where you must place it in the right spot.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-40"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-41"></a><span class="s2">    You burst onto the Bridge with the netron destruct bomb</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-42"></a><span class="s2">    under your arm and surprise 5 Gothons who are trying to</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-43"></a><span class="s2">    take control of the ship.  Each of them has an even uglier</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-44"></a><span class="s2">    clown costume than the last.  They haven&#39;t pulled their</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-45"></a><span class="s2">    weapons out yet, as they see the active bomb under your</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-46"></a><span class="s2">    arm and don&#39;t want to set it off.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-47"></a><span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-48"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-49"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-50"></a>    <span class="no">ESCAPE_POD</span> <span class="o">=</span> <span class="no">Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Escape Pod&quot;</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-51"></a>    <span class="s2">&quot;&quot;&quot;</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-52"></a><span class="s2">    You point your blaster at the bomb under your arm</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-53"></a><span class="s2">    and the Gothons put their hands up and start to sweat.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-54"></a><span class="s2">    You inch backward to the door, open it, and then carefully</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-55"></a><span class="s2">    place the bomb on the floor, pointing your blaster at it.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-56"></a><span class="s2">    You then jump back through the door, punch the close button</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-57"></a><span class="s2">    and blast the lock so the Gothons can&#39;t get out.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-58"></a><span class="s2">    Now that the bomb is placed you run to the escape pod to</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-59"></a><span class="s2">    get off this tin can.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-60"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-61"></a><span class="s2">    You rush through the ship desperately trying to make it to</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-62"></a><span class="s2">    the escape pod before the whole ship explodes.  It seems like</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-63"></a><span class="s2">    hardly any Gothons are on the ship, so your run is clear of</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-64"></a><span class="s2">    interference.  You get to the chamber with the escape pods, and</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-65"></a><span class="s2">    now need to pick one to take.  Some of them could be damaged</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-66"></a><span class="s2">    but you don&#39;t have time to look.  There&#39;s 5 pods, which one</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-67"></a><span class="s2">    do you take?</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-68"></a><span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-69"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-70"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-71"></a>    <span class="no">THE_END_WINNER</span> <span class="o">=</span> <span class="no">Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;The End&quot;</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-72"></a>    <span class="s2">&quot;&quot;&quot;</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-73"></a><span class="s2">    You jump into pod 2 and hit the eject button.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-74"></a><span class="s2">    The pod easily slides out into space heading to</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-75"></a><span class="s2">    the planet below.  As it flies to the planet, you look</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-76"></a><span class="s2">    back and see your ship implode then explode like a</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-77"></a><span class="s2">    bright star, taking out the Gothon ship at the same</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-78"></a><span class="s2">    time.  You won!</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-79"></a><span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-80"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-81"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-82"></a>    <span class="no">THE_END_LOSER</span> <span class="o">=</span> <span class="no">Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;The End&quot;</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-83"></a>    <span class="s2">&quot;&quot;&quot;</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-84"></a><span class="s2">    You jump into a random pod and hit the eject button.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-85"></a><span class="s2">    The pod escapes out into the void of space, then</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-86"></a><span class="s2">    implodes as the hull ruptures, crushing your body</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-87"></a><span class="s2">    into jam jelly.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-88"></a><span class="s2">    &quot;&quot;&quot;</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-89"></a>    <span class="p">)</span>
+</pre></div>
+</td></tr></table><p>After this you need to connect these rooms to create the map using <tt class="docutils literal">Room.add_paths</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-1"></a>    <span class="no">ESCAPE_POD</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-2"></a>        <span class="s1">&#39;2&#39;</span> <span class="o">=&gt;</span> <span class="no">THE_END_WINNER</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-3"></a>        <span class="s1">&#39;*&#39;</span> <span class="o">=&gt;</span> <span class="no">THE_END_LOSER</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-4"></a>    <span class="p">})</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-5"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-6"></a>    <span class="no">GENERIC_DEATH</span> <span class="o">=</span> <span class="no">Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;death&quot;</span><span class="p">,</span> <span class="s2">&quot;You died.&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-7"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-8"></a>    <span class="no">THE_BRIDGE</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-9"></a>        <span class="s1">&#39;throw the bomb&#39;</span> <span class="o">=&gt;</span> <span class="no">GENERIC_DEATH</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-10"></a>        <span class="s1">&#39;slowly place the bomb&#39;</span> <span class="o">=&gt;</span> <span class="no">ESCAPE_POD</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-11"></a>    <span class="p">})</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-12"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-13"></a>    <span class="no">LASER_WEAPON_ARMORY</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-14"></a>        <span class="s1">&#39;0132&#39;</span> <span class="o">=&gt;</span> <span class="no">THE_BRIDGE</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-15"></a>        <span class="s1">&#39;*&#39;</span> <span class="o">=&gt;</span> <span class="no">GENERIC_DEATH</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-16"></a>    <span class="p">})</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-17"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-18"></a>    <span class="no">CENTRAL_CORRIDOR</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-19"></a>        <span class="s1">&#39;shoot!&#39;</span> <span class="o">=&gt;</span> <span class="no">GENERIC_DEATH</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-20"></a>        <span class="s1">&#39;dodge!&#39;</span> <span class="o">=&gt;</span> <span class="no">GENERIC_DEATH</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-21"></a>        <span class="s1">&#39;tell a joke&#39;</span> <span class="o">=&gt;</span> <span class="no">LASER_WEAPON_ARMORY</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-22"></a>    <span class="p">})</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-23"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-24"></a>    <span class="no">START</span> <span class="o">=</span> <span class="no">CENTRAL_CORRIDOR</span>
+</pre></div>
+</td></tr></table><p>Lastly, we'll need a way to find rooms by their names, load them, and save them to a &quot;session&quot;.  I'll explain wha a session is in the next section, but enter this code for the last part of <tt class="docutils literal">map.rb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-1"></a>    <span class="c1"># A whitelist of allowed room names. We use this so that</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-2"></a>    <span class="c1"># bad people on the internet can&#39;t access random variables</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-3"></a>    <span class="c1"># with names.  You can use Test::constants and Kernel.const_get</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-4"></a>    <span class="c1"># too.</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-5"></a>    <span class="no">ROOM_NAMES</span> <span class="o">=</span> <span class="p">{</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-6"></a>        <span class="s1">&#39;CENTRAL_CORRIDOR&#39;</span> <span class="o">=&gt;</span> <span class="no">CENTRAL_CORRIDOR</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-7"></a>        <span class="s1">&#39;LASER_WEAPON_ARMORY&#39;</span> <span class="o">=&gt;</span> <span class="no">LASER_WEAPON_ARMORY</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-8"></a>        <span class="s1">&#39;THE_BRIDGE&#39;</span> <span class="o">=&gt;</span> <span class="no">THE_BRIDGE</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-9"></a>        <span class="s1">&#39;ESCAPE_POD&#39;</span> <span class="o">=&gt;</span> <span class="no">ESCAPE_POD</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-10"></a>        <span class="s1">&#39;THE_END_WINNER&#39;</span> <span class="o">=&gt;</span> <span class="no">THE_END_WINNER</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-11"></a>        <span class="s1">&#39;THE_END_LOSER&#39;</span> <span class="o">=&gt;</span> <span class="no">THE_END_LOSER</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-12"></a>        <span class="s1">&#39;START&#39;</span> <span class="o">=&gt;</span> <span class="no">START</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-13"></a>    <span class="p">}</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-14"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-15"></a>    <span class="k">def</span> <span class="nf">Map</span><span class="o">::</span><span class="n">load_room</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-16"></a>        <span class="c1"># Given a session this will return the right room or nil</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-17"></a>        <span class="k">return</span> <span class="no">ROOM_NAMES</span><span class="o">[</span><span class="n">session</span><span class="o">[</span><span class="ss">:room</span><span class="o">]]</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-18"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-19"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-20"></a>    <span class="k">def</span> <span class="nf">Map</span><span class="o">::</span><span class="n">save_room</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">room</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-21"></a>        <span class="c1"># Store the room in the session for later, using its name</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-22"></a>        <span class="n">session</span><span class="o">[</span><span class="ss">:room</span><span class="o">]</span> <span class="o">=</span> <span class="no">ROOM_NAMES</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="n">room</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-23"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-24"></a>
+<a name="ruby--ex52--gothonweb--lib--gothonweb--map.rb-idio.html-25"></a><span class="k">end</span>
+</pre></div>
+</td></tr></table><p>You'll notice that there are a couple of problems with our <tt class="docutils literal">Room</tt> class and this map:</p>
+<ol class="arabic simple">
+<li>There are parts in the original game where we ran code that determined things like the bomb's keypad code, or the right pod.  In this game we just pick some defaults and go with it, but later you'll be given Study Drills to make this work again.</li>
+<li>I've made a <tt class="docutils literal">generic_death</tt> ending for all of the bad decisions, which you'll have to finish for me.  You'll need to go back through and add in all the original endings and make sure they work.</li>
+<li>I've got a new kind of transition labeled <tt class="docutils literal">&quot;*&quot;</tt> that will be used for a &quot;catch-all&quot; action in the engine.</li>
+</ol>
+<p>Once you've that written, here's the new automated test <tt class="docutils literal">tests/test_map.rb</tt> that you should have to get yourself started:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-1"></a><span class="nb">require</span> <span class="s2">&quot;gothonweb/map.rb&quot;</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-2"></a><span class="nb">require</span> <span class="s2">&quot;test/unit&quot;</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-3"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-4"></a><span class="k">class</span> <span class="nc">TestMap</span> <span class="o">&lt;</span> <span class="ss">Test</span><span class="p">:</span><span class="ss">:Unit</span><span class="o">::</span><span class="no">TestCase</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-5"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-6"></a>    <span class="k">def</span> <span class="nf">test_room</span><span class="p">()</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-7"></a>        <span class="n">gold</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;GoldMap::Room&quot;</span><span class="p">,</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-8"></a>                    <span class="s2">&quot;&quot;&quot;This room has gold in it you can grab. There&#39;s a</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-9"></a><span class="s2">                door to the north.&quot;&quot;&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-10"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">gold</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;GoldMap::Room&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-11"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">gold</span><span class="o">.</span><span class="n">paths</span><span class="p">,</span> <span class="p">{})</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-12"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-13"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-14"></a>    <span class="k">def</span> <span class="nf">test_room_paths</span><span class="p">()</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-15"></a>        <span class="n">center</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Center&quot;</span><span class="p">,</span> <span class="s2">&quot;Test room in the center.&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-16"></a>        <span class="n">north</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;North&quot;</span><span class="p">,</span> <span class="s2">&quot;Test room in the north.&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-17"></a>        <span class="n">south</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;South&quot;</span><span class="p">,</span> <span class="s2">&quot;Test room in the south.&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-18"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-19"></a>        <span class="n">center</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s1">&#39;north&#39;</span><span class="o">=&gt;</span> <span class="n">north</span><span class="p">,</span> <span class="s1">&#39;south&#39;</span><span class="o">=&gt;</span> <span class="n">south</span><span class="p">})</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-20"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;north&#39;</span><span class="p">),</span> <span class="n">north</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-21"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">center</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;south&#39;</span><span class="p">),</span> <span class="n">south</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-22"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-23"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-24"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-25"></a>    <span class="k">def</span> <span class="nf">test_map</span><span class="p">()</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-26"></a>        <span class="n">start</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Start&quot;</span><span class="p">,</span> <span class="s2">&quot;You can go west and down a hole.&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-27"></a>        <span class="n">west</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Trees&quot;</span><span class="p">,</span> <span class="s2">&quot;There are trees here, you can go east.&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-28"></a>        <span class="n">down</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:Room</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Dungeon&quot;</span><span class="p">,</span> <span class="s2">&quot;It&#39;s dark down here, you can go up.&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-29"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-30"></a>        <span class="n">start</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s1">&#39;west&#39;</span><span class="o">=&gt;</span> <span class="n">west</span><span class="p">,</span> <span class="s1">&#39;down&#39;</span><span class="o">=&gt;</span> <span class="n">down</span><span class="p">})</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-31"></a>        <span class="n">west</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s1">&#39;east&#39;</span><span class="o">=&gt;</span> <span class="n">start</span><span class="p">})</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-32"></a>        <span class="n">down</span><span class="o">.</span><span class="n">add_paths</span><span class="p">({</span><span class="s1">&#39;up&#39;</span><span class="o">=&gt;</span> <span class="n">start</span><span class="p">})</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-33"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-34"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;west&#39;</span><span class="p">),</span> <span class="n">west</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-35"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;west&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;east&#39;</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-36"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;down&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;up&#39;</span><span class="p">),</span> <span class="n">start</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-37"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-38"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-39"></a>    <span class="k">def</span> <span class="nf">test_gothon_game_map</span><span class="p">()</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-40"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="ss">Map</span><span class="p">:</span><span class="ss">:START</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;shoot!&#39;</span><span class="p">),</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:GENERIC_DEATH</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-41"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="ss">Map</span><span class="p">:</span><span class="ss">:START</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;dodge!&#39;</span><span class="p">),</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:GENERIC_DEATH</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-42"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-43"></a>        <span class="n">room</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:START</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;tell a joke&#39;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-44"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:LASER_WEAPON_ARMORY</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-45"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-46"></a>        <span class="c1"># complete this test by making it play the game</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-47"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-48"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-49"></a>    <span class="k">def</span> <span class="nf">test_session_loading</span><span class="p">()</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-50"></a>        <span class="n">session</span> <span class="o">=</span> <span class="p">{}</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-51"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-52"></a>        <span class="n">room</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:load_room</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-53"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-54"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-55"></a>        <span class="ss">Map</span><span class="p">:</span><span class="ss">:save_room</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:START</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-56"></a>        <span class="n">room</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:load_room</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-57"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:START</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-58"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-59"></a>        <span class="n">room</span> <span class="o">=</span> <span class="n">room</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s1">&#39;tell a joke&#39;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-60"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:LASER_WEAPON_ARMORY</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-61"></a>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-62"></a>        <span class="ss">Map</span><span class="p">:</span><span class="ss">:save_room</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">room</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-63"></a>        <span class="n">assert_equal</span><span class="p">(</span><span class="n">room</span><span class="p">,</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:LASER_WEAPON_ARMORY</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-64"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--tests--test_map.rb-idio.html-65"></a><span class="k">end</span>
+</pre></div>
+</td></tr></table><p>Your task in this part of the exercise is to complete the map and make the automated test completely validate the whole map.  This includes fixing all the <tt class="docutils literal">generic_death</tt> objects to be real endings.  Make sure this works really well and that your test is as complete as possible because we'll be changing this map later and you'll use the tests to make sure it keeps working.</p>
+</div>
+<div class="section" id="sessions-and-tracking-users">
+<h1>Sessions and Tracking Users</h1>
+<p>At a certain point in your web application you'll need to keep track of some information and associate it with the user's browser.  The web (because of HTTP) is what we like to call &quot;stateless,&quot; which means each request you make is independent of any other requests being made.  If you request page A, put in some data, and click a link to page B, all the data you sent to page A just disappears.</p>
+<p>The solution to this is to create a little data store (usually in a database or on the disk) that uses a number unique to each browser to keep track of what that browser was doing.  This is called &quot;session tracking&quot; uses cookies in the browser to maintain the state of the user through the application.  In the little Sinatra framework it's fairly easy by adding this line at the top:</p>
+<pre class="code ruby literal-block">
+<span class="name">enable</span> <span class="literal string symbol">:sessions</span>
+</pre>
+<p>Put that line where you put your <tt class="docutils literal">set</tt> calls, and then you can use the session like this:</p>
+<pre class="code ruby literal-block">
+<span class="comment single"># set a value in the session for later</span>
+<span class="name">session</span><span class="operator">[</span><span class="literal string symbol">:room</span><span class="operator">]</span> <span class="operator">=</span> <span class="literal string double">&quot;central_corridor&quot;</span>
+
+<span class="comment single"># get the room in another handler with</span>
+<span class="name">current_room</span> <span class="operator">=</span> <span class="name">session</span><span class="operator">[</span><span class="literal string symbol">:room</span><span class="operator">]</span>
+</pre>
+<p>This is what we were doing in <tt class="docutils literal">map.rb</tt> with the <tt class="docutils literal"><span class="pre">Map::load_room</span></tt> and <tt class="docutils literal"><span class="pre">Map::store_room</span></tt> to keep track of what room the player is currently in.  You could also use this to keep track of choices they've made, if monsters have died, or how much damage the player has sustained.</p>
+<p>You can read more about Sinatra's sessions at the project's README at <a class="reference external" href="http://www.sinatrarb.com/intro.html#Using%20Sessions">http://www.sinatrarb.com/intro.html#Using%20Sessions</a>.</p>
+</div>
+<div class="section" id="creating-an-engine">
+<h1>Creating an Engine</h1>
+<p>You should have your game map working and a good unit test for it.  I now want you to make a simple little game engine that will run the rooms, collect input from the player, and keep track of where a player is in the game.  We'll be using the sessions you just learned to make a simple game engine that will:</p>
+<ol class="arabic simple">
+<li>Start a new game for new users.</li>
+<li>Present the room to the user.</li>
+<li>Take input from the user.</li>
+<li>Run user input through the game.</li>
+<li>Display the results and keep going until the user dies.</li>
+</ol>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you did not install <tt class="docutils literal">rerun</tt> in Exercise 50 then you'll want to install it now for doing the rest of this exercise.</p>
+</div>
+<p>To do this, you're going to take the trusty <tt class="docutils literal">bin/app.rb</tt> you've been hacking on and create a fully working, session-based game engine.  The catch is I'm going to make a very simple one with <em>basic HTML</em> files, and it'll be up to you to complete it.   Here's the base engine:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-1"></a><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-2"></a><span class="nb">require</span> <span class="s1">&#39;./lib/gothonweb/map.rb&#39;</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-3"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-4"></a><span class="n">set</span> <span class="ss">:port</span><span class="p">,</span> <span class="mi">8080</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-5"></a><span class="n">set</span> <span class="ss">:static</span><span class="p">,</span> <span class="kp">true</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-6"></a><span class="n">set</span> <span class="ss">:public_folder</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-7"></a><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="s2">&quot;views&quot;</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-8"></a><span class="n">enable</span> <span class="ss">:sessions</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-9"></a><span class="n">set</span> <span class="ss">:session_secret</span><span class="p">,</span> <span class="s1">&#39;BADSECRET&#39;</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-10"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-11"></a><span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-12"></a>    <span class="n">session</span><span class="o">[</span><span class="ss">:room</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;START&#39;</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-13"></a>    <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">&#39;/game&#39;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-14"></a><span class="k">end</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-15"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-16"></a><span class="n">get</span> <span class="s1">&#39;/game&#39;</span> <span class="k">do</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-17"></a>    <span class="n">room</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:load_room</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-18"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-19"></a>    <span class="k">if</span> <span class="n">room</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-20"></a>        <span class="n">erb</span> <span class="ss">:show_room</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:room</span> <span class="o">=&gt;</span> <span class="n">room</span><span class="p">}</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-21"></a>    <span class="k">else</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-22"></a>        <span class="n">erb</span> <span class="ss">:you_died</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-23"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-24"></a><span class="k">end</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-25"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-26"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-27"></a><span class="n">post</span> <span class="s1">&#39;/game&#39;</span> <span class="k">do</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-28"></a>    <span class="n">room</span> <span class="o">=</span> <span class="ss">Map</span><span class="p">:</span><span class="ss">:load_room</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-29"></a>    <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:action</span><span class="o">]</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-30"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-31"></a>    <span class="k">if</span> <span class="n">room</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-32"></a>        <span class="n">next_room</span> <span class="o">=</span> <span class="n">room</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="o">||</span> <span class="n">room</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-33"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-34"></a>        <span class="k">if</span> <span class="n">next_room</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-35"></a>            <span class="ss">Map</span><span class="p">:</span><span class="ss">:save_room</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">next_room</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-36"></a>        <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-37"></a>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-38"></a>        <span class="n">redirect</span> <span class="n">to</span><span class="p">(</span><span class="s1">&#39;/game&#39;</span><span class="p">)</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-39"></a>    <span class="k">else</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-40"></a>        <span class="n">erb</span> <span class="ss">:you_died</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-41"></a>    <span class="k">end</span>
+<a name="ruby--ex52--gothonweb--bin--app.rb-idio.html-42"></a><span class="k">end</span>
+</pre></div>
+</td></tr></table><p>There are even more new things in this script, but amazingly it's an entire web-based game engine in a small file.  The biggest &quot;hack&quot; in the script are the lines that bring the sessions back, which is needed so that debug mode reloading works.  Otherwise, each time you refresh the page the sessions will disappear and the game won't work.</p>
+<p>You should next delete <tt class="docutils literal">views/hello_form.erb</tt> and <tt class="docutils literal">views/index.erb</tt> and create the two views mentioned in the above code.  Here's a <em>very</em> simple <tt class="docutils literal">views/show_room.erb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-1"></a>&lt;h1&gt; &lt;%= room.name %&gt; &lt;/h1&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-2"></a>
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-3"></a>&lt;pre&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-4"></a>&lt;%= room.description %&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-5"></a>&lt;/pre&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-6"></a>
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-7"></a>&lt;% if room.name == &quot;death&quot; || room.name == &quot;The End&quot; %&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-8"></a>    &lt;p&gt;&lt;a href=&quot;/&quot;&gt;Play Again?&lt;/a&gt;&lt;/p&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-9"></a>&lt;% else %&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-10"></a>    &lt;p&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-11"></a>    &lt;form action=&quot;/game&quot; method=&quot;POST&quot;&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-12"></a>        - &lt;input type=&quot;text&quot; name=&quot;action&quot;&gt; &lt;input type=&quot;SUBMIT&quot;&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-13"></a>    &lt;/form&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-14"></a>    &lt;/p&gt;
+<a name="ruby--ex52--gothonweb--views--show_room.erb-idio.html-15"></a>&lt;% end %&gt;
+</pre></div>
+</td></tr></table><p>That is the template to show a room as you travel through the game. Next you need one to tell someone they died in the case that they got to the end of the map on accident, which is <tt class="docutils literal">views/you_died.html</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex52--gothonweb--views--you_died.erb-idio.html-1"></a>&lt;h1&gt;You Died!&lt;/h1&gt;
+<a name="ruby--ex52--gothonweb--views--you_died.erb-idio.html-2"></a>
+<a name="ruby--ex52--gothonweb--views--you_died.erb-idio.html-3"></a>&lt;p&gt;Looks like you bit the dust.&lt;/p&gt;
+<a name="ruby--ex52--gothonweb--views--you_died.erb-idio.html-4"></a>&lt;p&gt;&lt;a href=&quot;/&quot;&gt;Play Again&lt;/a&gt;&lt;/p&gt;
+</pre></div>
+</td></tr></table><p>With those in place, you should now be able to do the following:</p>
+<p>1. Get the test <tt class="docutils literal">tests/test_app.rb</tt> working again so that you are testing the game.  You won't be able to do much more than a few clicks in the game because of sessions, but you should be able to do some basics.
+3. Run the <tt class="docutils literal">rerun 'ruby bin/app.rb'</tt> script and test the game.</p>
+<p>You should be able to refresh and fix the game like normal, and work with the game HTML and engine until it does all the things you want it to do.</p>
+</div>
+<div class="section" id="your-final-exam">
+<h1>Your Final Exam</h1>
+<p>Do you feel like this was a huge amount of information thrown at you all at once?  Good, I want you to have something to tinker with while you build your skills.  To complete this exercise, I'm going to give you a final set of exercises for you to complete on your own.  You'll notice that what you've written so far isn't very well built; it is just a first version of the code.  Your task now is to make the game more complete by doing these things:</p>
+<ol class="arabic simple">
+<li>Fix all the bugs I mention in the code, and any that I didn't mention.  If you find new bugs, let me know.</li>
+<li>Improve all of the automated tests so that you test more of the application and get to a point where you use a test rather than your browser to check the application while you work.</li>
+<li>Make the HTML look better.</li>
+<li>Research logins and create a signup system for the application, so people can have logins and high scores.</li>
+<li>Complete the game map, making it as large and feature-complete as possible.</li>
+<li>Give people a &quot;help&quot; system that lets them ask what they can do at each room in the game.</li>
+<li>Add any other features you can think of to the game.</li>
+<li>Create several &quot;maps&quot; and let people choose a game they want to run.  Your <tt class="docutils literal">bin/app.rb</tt> engine should be able to run any map of rooms you give it, so you can support multiple games.</li>
+<li>Finally, use what you learned in Exercises 48 and 49 to create a better input processor. You have most of the code necessary; you just need to improve the grammar and hook it up to your input form and the <tt class="docutils literal">GameEngine</tt>.</li>
+</ol>
+<p>Good luck!</p>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

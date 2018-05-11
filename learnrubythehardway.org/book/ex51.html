@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 51: Getting Input from a Browser</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex51.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex51.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex51.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 51: Getting Input from a Browser</h1>
+            <p>While it's exciting to see the browser display &quot;Hello World,&quot; it's even more exciting to let the user submit text to your application from a form.  In this exercise we'll improve our starter web application by using forms and storing information about users into their &quot;sessions.&quot;</p>
+<div class="section" id="how-the-web-works">
+<h1>How the Web Works</h1>
+<p>Time for some boring stuff.  You need to understand a bit more about how the web works before you can make a form.  This description isn't complete, but it's accurate and will help you figure out what might be going wrong with your application.  Also, creating forms will be easier if you know what they do.</p>
+<p>I'll start with a simple diagram that shows you the different parts of a web request and how the information flows:</p>
+<div class="figure align-center">
+<img alt="_static/python/http_flow_graphic.png" src="_static/python/http_flow_graphic.png" />
+</div>
+<p>I've labeled the lines with letters so I can walk you through a regular request process:</p>
+<ol class="arabic simple">
+<li>You type in the url <a class="reference external" href="http://test.com//">http://test.com//</a> into your browser and it sends the request on <tt class="docutils literal">line (A)</tt> to your computer's network interface.</li>
+<li>Your request goes out over the internet on <tt class="docutils literal">line (B)</tt> and then to the remote computer on <tt class="docutils literal">line (C)</tt> where my server accepts the request.</li>
+<li>Once my computer accepts it, my web application gets it on <tt class="docutils literal">line (D)</tt>, and my Ruby code runs the <tt class="docutils literal">index.GET</tt> handler.</li>
+<li>The response comes out of my Ruby server when I <tt class="docutils literal">return</tt> it, and it goes back to your browser over <tt class="docutils literal">line (D)</tt> again.</li>
+<li>The server running this site takes the response off <tt class="docutils literal">line (D)</tt> then sends it back over the internet on <tt class="docutils literal">line (C)</tt>.</li>
+<li>The response from the server then comes off the internet on <tt class="docutils literal">line (B)</tt>, and your computer's network interface hands it to your browser on <tt class="docutils literal">line (A)</tt>.</li>
+<li>Finally, your browser then displays the response.</li>
+</ol>
+<p>In this description there are a few terms you should know so that you have a common vocabulary to work with when talking about your web application:</p>
+<dl class="docutils">
+<dt>Browser</dt>
+<dd>The software that you're probably using every day.  Most people don't know what a browser really does. They just call browsers &quot;the internet.&quot;  Its job is to take addresses (like <a class="reference external" href="http://test.com/">http://test.com/</a>) you type into the URL bar, then use that information to make requests to the server at that address.</dd>
+<dt>Address</dt>
+<dd>This is normally a URL (Uniform Resource Locator) like <a class="reference external" href="http://test.com//">http://test.com//</a> and indicates where a browser should go.  The first part <tt class="docutils literal">http</tt> indicates the protocol you want to use, in this case &quot;Hyper-Text Transport Protocol.&quot;  You can also try <a class="reference external" href="ftp://ibiblio.org/">ftp://ibiblio.org/</a> to see how &quot;File Transport Protocol&quot; works.  The <a class="reference external" href="http://test.com/">http://test.com/</a> part is the &quot;hostname,&quot; or a human readable address you can remember and which maps to a number called an IP address, similar to a telephone number for a computer on the Internet.  Finally, URLs can have a trailing <tt class="docutils literal">path</tt> like the <tt class="docutils literal">/book/</tt> part of <a class="reference external" href="http://test.com//book/">http://test.com//book/</a>, which indicates a file or some resource <em>on</em> the server to retrieve with a request.  There are many other parts, but those are the main ones.</dd>
+<dt>Connection</dt>
+<dd>Once a browser knows what protocol you want to use (http), what server you want to talk to (<a class="reference external" href="http://test.com/">http://test.com/</a>), and what resource on that server to get, it must make a connection.  The browser simply asks your operating system (OS) to open a &quot;port&quot; to the computer, usually port 80. When it works the OS hands back to your program something that works like a file, but is actually sending and receiving bytes over the network wires between your computer and the other computer at <a class="reference external" href="http://test.com/">http://test.com/</a>.  This is also the same thing that happens with <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a> but in this case you're telling the browser to connect to your own computer (localhost) and use port 8080 rather than the default of 80.  You could also do <a class="reference external" href="http://test.com:80/">http://test.com:80/</a> and get the same result, except you're explicitly saying to use port 80 instead of letting it be that by default.</dd>
+<dt>Request</dt>
+<dd>Your browser is connected using the address you gave. Now it needs to ask for the resource it wants (or you want) on the remote server.  If you gave <tt class="docutils literal">/book/</tt> at the end of the URL, then you want the file (resource) at <tt class="docutils literal">/book/</tt>, and most servers will use the real file <tt class="docutils literal">/book/index.html</tt> but pretend it doesn't exist.  What the browser does to get this resource is send a <em>request</em> to the server.  I won't get into exactly how it does this, but just understand that it has to send something to query the server for the request.  The interesting thing is that these &quot;resources&quot; don't have to be files. For instance, when the browser in your application asks for something, the server is returning something your Ruby code generated.</dd>
+<dt>Server</dt>
+<dd>The server is the computer at the end of a browser's connection that knows how to answer your browser's requests for files/resources.  Most web servers just send files, and that's actually the majority of traffic.  But you're actually building a server in Ruby that knows how to take requests for resources, and then return strings that you craft using Ruby.  When you do this crafting, <em>you</em> are pretending to be a file to the browser, but really it's just code.  As you can see from Exercise 50, it also doesn't take much code to create a response.</dd>
+<dt>Response</dt>
+<dd>This is the HTML (CSS, JavaScript, or images) your server wants to send back to the browser as the answer to the browser's request.  In the case of files, it just reads them off the disk and sends them to the browser, but it wraps the contents of the disk in a special &quot;header&quot; so the browser knows what it's getting.  In the case of your application, you're still sending the same thing, including the header, but you generate that data on the fly with your Ruby code.</dd>
+</dl>
+<p>That is the fastest crash course in how a web browser accesses information on servers on the internet.  It should work well enough for you to understand this exercise, but if not, read about it as much as you can until you get it.  A really good way to do that is to take the diagram and break different parts of the web application you did in Exercise 50.  If you can break your web application in predictable ways using the diagram, you'll start to understand how it works.</p>
+</div>
+<div class="section" id="how-forms-work">
+<h1>How Forms Work</h1>
+<p>The easiest way to see how forms work is to create one.  Change your <tt class="docutils literal">bin/app.rb</tt> code to be this now:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-1"></a><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-2"></a>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-3"></a><span class="n">set</span> <span class="ss">:port</span><span class="p">,</span> <span class="mi">8080</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-4"></a><span class="n">set</span> <span class="ss">:static</span><span class="p">,</span> <span class="kp">true</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-5"></a><span class="n">set</span> <span class="ss">:public_folder</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-6"></a><span class="n">set</span> <span class="ss">:views</span><span class="p">,</span> <span class="s2">&quot;views&quot;</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-7"></a>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-8"></a><span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-9"></a>    <span class="k">return</span> <span class="s1">&#39;Hello world&#39;</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-10"></a><span class="k">end</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-11"></a>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-12"></a><span class="n">get</span> <span class="s1">&#39;/hello/&#39;</span> <span class="k">do</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-13"></a>    <span class="n">erb</span> <span class="ss">:hello_form</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-14"></a><span class="k">end</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-15"></a>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-16"></a><span class="n">post</span> <span class="s1">&#39;/hello/&#39;</span> <span class="k">do</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-17"></a>    <span class="n">greeting</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:greeting</span><span class="o">]</span> <span class="o">||</span> <span class="s2">&quot;Hi There&quot;</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-18"></a>    <span class="nb">name</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span> <span class="o">||</span> <span class="s2">&quot;Nobody&quot;</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-19"></a>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-20"></a>    <span class="n">erb</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">&#39;greeting&#39;</span> <span class="o">=&gt;</span> <span class="n">greeting</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nb">name</span><span class="p">}</span>
+<a name="ruby--ex51--gothonweb--bin--app.rb-idio.html-21"></a><span class="k">end</span>
+</pre></div>
+</td></tr></table><p>The changes I've made are:</p>
+<ol class="arabic simple">
+<li>Make the <tt class="docutils literal">get '/hello/'</tt> handler simply return a <tt class="docutils literal">:hello_form</tt> page. We'll make that next.</li>
+<li>Create a different hanlder that is <tt class="docutils literal">post '/hello/'</tt> which looks similar to the previous version of this code, except we start with <tt class="docutils literal">post</tt> to indicate we'll be receiving a form, and then we also accept a name parameter.  We'll update the <tt class="docutils literal">index.erb</tt> to match this next.</li>
+</ol>
+<p>Once you have that, create this <tt class="docutils literal">views/index.erb</tt> file for the <tt class="docutils literal">post '/hello/'</tt> handler to use:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex51--gothonweb--views--index.erb-idio.html-1"></a>&lt;html&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-2"></a>    &lt;head&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-3"></a>        &lt;title&gt;Gothons Of Planet Percal #25&lt;/title&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-4"></a>    &lt;/head&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-5"></a>&lt;body&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-6"></a>
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-7"></a>&lt;p&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-8"></a>I just wanted to say &lt;em style=&quot;color: green; font-size: 2em;&quot;&gt;&lt;%= greeting %&gt;, &lt;%= name %&gt;&lt;/em&gt;.
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-9"></a>&lt;/p&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-10"></a>
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-11"></a>&lt;/body&gt;
+<a name="ruby--ex51--gothonweb--views--index.erb-idio.html-12"></a>&lt;/html&gt;
+</pre></div>
+</td></tr></table><p>Which only adds the <tt class="docutils literal">name</tt> variable to the end of our greeting.  Make sure you see how this <tt class="docutils literal">name</tt> variable is now in the <tt class="docutils literal">post '/hello/'</tt> handler and now passed to the <tt class="docutils literal">erb :index</tt> call there.</p>
+<p>The secret to making this work though is the <tt class="docutils literal">:hello_form</tt> (aka <tt class="docutils literal">views/hello_form.erb</tt>) which we'll cover next.</p>
+</div>
+<div class="section" id="creating-html-forms">
+<h1>Creating HTML Forms</h1>
+<p>The last piece of this form puzzle is to make the form in <tt class="docutils literal">views/hello_form.erb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-1"></a>&lt;html&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-2"></a>    &lt;head&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-3"></a>        &lt;title&gt;Sample Web Form&lt;/title&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-4"></a>    &lt;/head&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-5"></a>&lt;body&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-6"></a>
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-7"></a>&lt;h1&gt;Fill Out This Form&lt;/h1&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-8"></a>
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-9"></a>&lt;form action=&quot;/hello/&quot; method=&quot;POST&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-10"></a>    A Greeting: &lt;input type=&quot;text&quot; name=&quot;greeting&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-11"></a>    &lt;br/&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-12"></a>    Your Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-13"></a>    &lt;br/&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-14"></a>    &lt;input type=&quot;submit&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-15"></a>&lt;/form&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-16"></a>
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-17"></a>&lt;/body&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form.erb-idio.html-18"></a>&lt;/html&gt;
+</pre></div>
+</td></tr></table><p>A form then consists of the following:</p>
+<ol class="arabic simple">
+<li>The <tt class="docutils literal">&lt;form&gt;</tt> tag starts it off and says where to deliver this form.  In this case it's to <tt class="docutils literal"><span class="pre">action=&quot;/hello/&quot;</span></tt> which is our <tt class="docutils literal">post '/hello/'</tt> handler, and <tt class="docutils literal"><span class="pre">method=&quot;POST&quot;</span></tt> which tells the browser to use this mechanism.</li>
+<li>Text like you might put in another HTML tag, but also...</li>
+<li>&lt;input&gt; tags give the type of input fields we want, and the parameters to use.  In this case we have two, one with <tt class="docutils literal"><span class="pre">name=&quot;greeting&quot;</span></tt> for our <tt class="docutils literal"><span class="pre">params[:greeting]</span></tt> parameters, and <tt class="docutils literal"><span class="pre">name=&quot;name&quot;</span></tt> for our <tt class="docutils literal"><span class="pre">params[:name]</span></tt> parameter.</li>
+<li>These parameters are then mapped in our <tt class="docutils literal">post '/hello/'</tt> code to create the <tt class="docutils literal">greeting</tt> and <tt class="docutils literal">name</tt> variables which get passed as <tt class="docutils literal">:locals</tt> to the <tt class="docutils literal">erb :index</tt> call.</li>
+<li>Finally, the file <tt class="docutils literal">views/index.erb</tt> gets these variables and it prints them.</li>
+</ol>
+</div>
+<div class="section" id="creating-a-layout-template">
+<h1>Creating a Layout Template</h1>
+<p>As programmers we have to find common patterns and try to automate them away.  One common pattern is the HTML that is at the beginning and the end of each of our <tt class="docutils literal">.erb</tt> files.  You shouldn't have to type that every single time you want to create a new view, and you should be able to change that content in one place to change all the pages.  The solution to this is a concept called a &quot;layout template&quot;, which we'll create in <tt class="docutils literal">views/layout.erb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-1"></a>&lt;html&gt;
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-2"></a>&lt;head&gt;
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-3"></a>    &lt;title&gt;Gothons From Planet Percal #25&lt;/title&gt;
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-4"></a>&lt;/head&gt;
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-5"></a>&lt;body&gt;
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-6"></a>
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-7"></a>&lt;%= yield %&gt;
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-8"></a>
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-9"></a>&lt;/body&gt;
+<a name="ruby--ex51--gothonweb--views--layout.erb-idio.html-10"></a>&lt;/html&gt;
+</pre></div>
+</td></tr></table><p>This simply takes the common HTML at the top and bottom of every template and puts it into one file.  The code <tt class="docutils literal">&lt;%= yield %&gt;</tt> is a Ruby thing that says to stop there and run the other view then come back.  By putting this into <tt class="docutils literal">views/layout.erb</tt> we're telling Sinatra to &quot;wrap&quot; all of our templates with this HTML.</p>
+<p>We can now write abbreviated HTML for the <tt class="docutils literal">views/index.erb</tt> file:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex51--gothonweb--views--index_laid_out.erb-idio.html-1"></a>&lt;p&gt;
+<a name="ruby--ex51--gothonweb--views--index_laid_out.erb-idio.html-2"></a>I just wanted to say &lt;em style=&quot;color: green; font-size: 2em;&quot;&gt;&lt;%= greeting %&gt;, &lt;%= name %&gt;&lt;/em&gt;.
+<a name="ruby--ex51--gothonweb--views--index_laid_out.erb-idio.html-3"></a>&lt;/p&gt;
+</pre></div>
+</td></tr></table><p>We can also do the same for the <tt class="docutils literal">views/html_form.erb</tt> file:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-1"></a>&lt;h1&gt;Fill Out This Form&lt;/h1&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-2"></a>
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-3"></a>&lt;form action=&quot;/hello/&quot; method=&quot;POST&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-4"></a>    A Greeting: &lt;input type=&quot;text&quot; name=&quot;greeting&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-5"></a>    &lt;br/&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-6"></a>    Your Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-7"></a>    &lt;br/&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-8"></a>    &lt;input type=&quot;submit&quot;&gt;
+<a name="ruby--ex51--gothonweb--views--hello_form_laid_out.erb-idio.html-9"></a>&lt;/form&gt;
+</pre></div>
+</td></tr></table><p>Change your files to match these by deleting the same content and then reload.  Use your browser's View Source feature to see that, even though you do not have the contents of <tt class="docutils literal">views/layout.erb</tt> in your new views, it still shows up in the resulting pages.</p>
+</div>
+<div class="section" id="writing-automated-tests-for-forms">
+<h1>Writing Automated Tests for Forms</h1>
+<p>You can also automate the testing of your web application using <tt class="docutils literal"><span class="pre">Rack::Test</span></tt>.  First install the gem for it:</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> sudo gem install rack-test
+</pre>
+<p>Then write a test file in <tt class="docutils literal">tests/test_gothonweb.rb</tt>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-1"></a><span class="nb">require</span> <span class="s1">&#39;./bin/app.rb&#39;</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-2"></a><span class="nb">require</span> <span class="s1">&#39;test/unit&#39;</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-3"></a><span class="nb">require</span> <span class="s1">&#39;rack/test&#39;</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-4"></a>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-5"></a><span class="k">class</span> <span class="nc">MyAppTest</span> <span class="o">&lt;</span> <span class="ss">Test</span><span class="p">:</span><span class="ss">:Unit</span><span class="o">::</span><span class="no">TestCase</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-6"></a>  <span class="kp">include</span> <span class="ss">Rack</span><span class="p">:</span><span class="ss">:Test</span><span class="o">::</span><span class="no">Methods</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-7"></a>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-8"></a>  <span class="k">def</span> <span class="nf">app</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-9"></a>    <span class="ss">Sinatra</span><span class="p">:</span><span class="ss">:Application</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-10"></a>  <span class="k">end</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-11"></a>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-12"></a>  <span class="k">def</span> <span class="nf">test_my_default</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-13"></a>    <span class="n">get</span> <span class="s1">&#39;/&#39;</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-14"></a>    <span class="n">assert_equal</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">,</span> <span class="n">last_response</span><span class="o">.</span><span class="n">body</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-15"></a>  <span class="k">end</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-16"></a>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-17"></a>  <span class="k">def</span> <span class="nf">test_hello_form</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-18"></a>    <span class="n">get</span> <span class="s1">&#39;/hello/&#39;</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-19"></a>    <span class="n">assert</span> <span class="n">last_response</span><span class="o">.</span><span class="n">ok?</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-20"></a>    <span class="n">assert</span> <span class="n">last_response</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;A Greeting&#39;</span><span class="p">)</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-21"></a>  <span class="k">end</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-22"></a>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-23"></a>  <span class="k">def</span> <span class="nf">test_hello_form_post</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-24"></a>    <span class="n">post</span> <span class="s1">&#39;/hello/&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="ss">:greeting</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi&quot;</span><span class="p">}</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-25"></a>    <span class="n">assert</span> <span class="n">last_response</span><span class="o">.</span><span class="n">ok?</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-26"></a>    <span class="n">assert</span> <span class="n">last_response</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;I just wanted to say&#39;</span><span class="p">)</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-27"></a>  <span class="k">end</span>
+<a name="ruby--ex51--gothonweb--tests--test_gothonweb.rb-idio.html-28"></a><span class="k">end</span>
+</pre></div>
+</td></tr></table><p>This file is simply pretending to be a web browser, and it looks similar to how the Sinatra handlers are, but written as if you were telling a browser to visit your webapplication with code.  To run this test do what you normally do:</p>
+<pre class="code console literal-block">
+<span class="generic prompt">$</span> rake <span class="name builtin">test</span>
+<span class="generic output">/usr/local/bin/ruby -I&quot;lib:tests&quot; -I&quot;/usr/local/lib/ruby/2.1.0&quot; &quot;/usr/local/lib/ruby/2.1.0/rake/rake_test_loader.rb&quot; &quot;tests/test_gothonweb.rb&quot;
+Run options:
+
+</span><span class="generic prompt">#</span> Running tests:
+<span class="generic output">
+Finished tests in 0.028189s, 106.4245 tests/s, 177.3742 assertions/s.
+3 tests, 5 assertions, 0 failures, 0 errors, 0 skips
+
+ruby -v: ruby 2.1.2p95 (2014-05-08 revision 45877) [x86_64-darwin11.0]</span>
+</pre>
+</div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<ol class="arabic simple">
+<li>Read even more about HTML, and give the simple form a better layout.  It helps to draw what you want to do on paper and <em>then</em> implement it with HTML.</li>
+<li>This one is hard, but try to figure out how you'd do a file upload form so that you can upload an image and save it to disk.</li>
+<li>This is even more mind-numbing, but go find the HTTP RFC (which is the document that describes how HTTP works) and read as much of it as you can.  It is really boring but comes in handy once in a while.</li>
+<li>This will also be really difficult, but see if you can find someone to help you setup a web server like Apache, Nginx, or thttpd.  Try to serve a couple of your .html and .css files with it just to see if you can.  Don't worry if you can't. Web servers kind of suck.</li>
+<li>Take a break after this and just try making as many different web applications as you can.  You should <em>definitely</em> read about sessions in Sinatra so you can understand how to keep state for a user.</li>
+</ol>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<dl class="docutils">
+<dt>Why don't my tests run?</dt>
+<dd>Remember, do <em>not</em> change to the tests directory.  If you do <tt class="docutils literal">cd tests</tt> to run your tests, you are doing it wrong.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

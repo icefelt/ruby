@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 4: Variables And Names</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex4.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex4.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex4.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 4: Variables And Names</h1>
+            <p>Now you can print things with <tt class="docutils literal">puts</tt> and you can do math.  The next step is to learn about variables.  In programming a variable is nothing more than a name for something, similar to how my name &quot;Zed&quot; is a name for, &quot;The human who wrote this book.&quot;  Programmers use these variable names to make their code read more like English, and because they have lousy memories.  If they didn't use good names for things in their software, they'd get lost when they tried to read their code again.</p>
+<p>If you get stuck with this exercise, remember the tricks you have been taught so far of finding differences and focusing on details:</p>
+<ol class="arabic simple">
+<li>Write a comment above each line explaining to yourself what it does in English.</li>
+<li>Read your <tt class="docutils literal">.rb</tt> file backward.</li>
+<li>Read your <tt class="docutils literal">.rb</tt> file out loud, saying even the characters.</li>
+</ol>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><a name="ruby--ex4.rb-idio.html-1"></a><span class="n">cars</span> <span class="o">=</span> <span class="mi">100</span>
+<a name="ruby--ex4.rb-idio.html-2"></a><span class="n">space_in_a_car</span> <span class="o">=</span> <span class="mi">4</span><span class="o">.</span><span class="mi">0</span>
+<a name="ruby--ex4.rb-idio.html-3"></a><span class="n">drivers</span> <span class="o">=</span> <span class="mi">30</span>
+<a name="ruby--ex4.rb-idio.html-4"></a><span class="n">passengers</span> <span class="o">=</span> <span class="mi">90</span>
+<a name="ruby--ex4.rb-idio.html-5"></a><span class="n">cars_not_driven</span> <span class="o">=</span> <span class="n">cars</span> <span class="o">-</span> <span class="n">drivers</span>
+<a name="ruby--ex4.rb-idio.html-6"></a><span class="n">cars_driven</span> <span class="o">=</span> <span class="n">drivers</span>
+<a name="ruby--ex4.rb-idio.html-7"></a><span class="n">carpool_capacity</span> <span class="o">=</span> <span class="n">cars_driven</span> <span class="o">*</span> <span class="n">space_in_a_car</span>
+<a name="ruby--ex4.rb-idio.html-8"></a><span class="n">average_passengers_per_car</span> <span class="o">=</span> <span class="n">passengers</span> <span class="o">/</span> <span class="n">cars_driven</span>
+<a name="ruby--ex4.rb-idio.html-9"></a>
+<a name="ruby--ex4.rb-idio.html-10"></a>
+<a name="ruby--ex4.rb-idio.html-11"></a><span class="nb">puts</span> <span class="s2">&quot;There are </span><span class="si">#{</span><span class="n">cars</span><span class="si">}</span><span class="s2"> cars available.&quot;</span>
+<a name="ruby--ex4.rb-idio.html-12"></a><span class="nb">puts</span> <span class="s2">&quot;There are only </span><span class="si">#{</span><span class="n">drivers</span><span class="si">}</span><span class="s2"> drivers available.&quot;</span>
+<a name="ruby--ex4.rb-idio.html-13"></a><span class="nb">puts</span> <span class="s2">&quot;There will be </span><span class="si">#{</span><span class="n">cars_not_driven</span><span class="si">}</span><span class="s2"> empty cars today.&quot;</span>
+<a name="ruby--ex4.rb-idio.html-14"></a><span class="nb">puts</span> <span class="s2">&quot;We can transport </span><span class="si">#{</span><span class="n">carpool_capacity</span><span class="si">}</span><span class="s2"> people today.&quot;</span>
+<a name="ruby--ex4.rb-idio.html-15"></a><span class="nb">puts</span> <span class="s2">&quot;We have </span><span class="si">#{</span><span class="n">passengers</span><span class="si">}</span><span class="s2"> to carpool today.&quot;</span>
+<a name="ruby--ex4.rb-idio.html-16"></a><span class="nb">puts</span> <span class="s2">&quot;We need to put about </span><span class="si">#{</span><span class="n">average_passengers_per_car</span><span class="si">}</span><span class="s2"> in each car.&quot;</span>
+</pre></div>
+</td></tr></table><div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal">_</tt> in <tt class="docutils literal">space_in_a_car</tt> is called an <tt class="docutils literal">underscore character</tt>.  Find out how to type it if you do not already know.  We use this character a lot to put an imaginary space between words in variable names.</p>
+</div>
+<div class="section" id="what-you-should-see">
+<h1>What You Should See</h1>
+<div class="highlight"><pre><a name="ruby--ex4.sh-idio-shint-pyg.html-1"></a><span class="gp">$</span> ruby ex4.rb
+<a name="ruby--ex4.sh-idio-shint-pyg.html-2"></a><span class="go">There are 100 cars available.</span>
+<a name="ruby--ex4.sh-idio-shint-pyg.html-3"></a><span class="go">There are only 30 drivers available.</span>
+<a name="ruby--ex4.sh-idio-shint-pyg.html-4"></a><span class="go">There will be 70 empty cars today.</span>
+<a name="ruby--ex4.sh-idio-shint-pyg.html-5"></a><span class="go">We can transport 120.0 people today.</span>
+<a name="ruby--ex4.sh-idio-shint-pyg.html-6"></a><span class="go">We have 90 to carpool today.</span>
+<a name="ruby--ex4.sh-idio-shint-pyg.html-7"></a><span class="go">We need to put about 3 in each car.</span>
+</pre></div></div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<p>When I wrote this program the first time I had a mistake, and Ruby told me about it like this:</p>
+<pre class="literal-block">
+There are 100 cars available.
+There are only 30 drivers available.
+There will be 70 empty cars today.
+ex4.rb:14: undefined local variable or method `carpool_capacity' for
+    main:Object (NameError)
+</pre>
+<p>Explain this error in your own words.  Make sure you use line numbers and explain why.</p>
+<p>Here are more study drills:</p>
+<ol class="arabic simple">
+<li>I used 4.0 for <tt class="docutils literal">space_in_a_car</tt>, but is that necessary? What happens if it's just 4?</li>
+<li>Remember that 4.0 is a <tt class="docutils literal">floating point</tt> number.  It's just a number with a decimal point, and you need 4.0 instead of just 4 so that it is floating point.</li>
+<li>Write comments above each of the variable assignments.</li>
+<li>Make sure you know what <tt class="docutils literal">=</tt> is called (equals) and that it's making names for things.</li>
+<li>Remember that <tt class="docutils literal">_</tt> is an underscore character.</li>
+<li>Try running <tt class="docutils literal">ruby</tt> from the Terminal as a calculator like you did before and use variable names to do your calculations.  Popular variable names are also <tt class="docutils literal">i</tt>, <tt class="docutils literal">x</tt>, and <tt class="docutils literal">j</tt>.</li>
+</ol>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<dl class="docutils">
+<dt>What is the difference between <tt class="docutils literal">=</tt> (single-equal) and <tt class="docutils literal">==</tt> (double-equal)?</dt>
+<dd>The <tt class="docutils literal">=</tt> (single-equal) assigns the value on the right to a variable on the left.  The <tt class="docutils literal">==</tt> (double-equal) tests if two things have the same value. You'll learn about this in Exercise 27.</dd>
+<dt>Can we write <tt class="docutils literal">x=100</tt> instead of <tt class="docutils literal">x = 100</tt>?</dt>
+<dd>You can, but it's bad form. You should add space around operators like this so that it's easier to read.</dd>
+<dt>What do you mean by &quot;read the file backward&quot;?</dt>
+<dd>Very simple. Imagine you have a file with 16 lines of code in it.  Start at line 16, and compare it to my file at line 16. Then do it again for 15, and so on until you've read the whole file backward.</dd>
+<dt>Why did you use <tt class="docutils literal">4.0</tt> for <tt class="docutils literal">space_in_a_car</tt>?</dt>
+<dd>It is mostly so you can then find out what a floating point number is and ask this question.  See the Study Drills.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:creator" content="@lzsthw">
+        <title>Learn Ruby</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='stylesheets/pure.css' rel='stylesheet'>
+        <link href='stylesheets/pygments.css' rel='stylesheet'>
+        <link href='stylesheets/main.css' rel='stylesheet'>
+        <link href='stylesheets/nav.css' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,900,700italic,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+        <style>
+        </style>
+ 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Exercise 37: Symbol Review</title>
+    </head>
+    <body id='wrapper'>
+        <div class='master-logo-wrapper ruby-edition clearfix'>
+            <a href='index.html'>
+                <div class='ruby-logo-sprite'></div>
+            </a>
+                <span class='edition-3 ruby-edition'><img src='images/3rd-edition-cloud.png' /></span>
+        </div><!-- /.master-logo-wrapper -->
+
+        <div style='clear: both;'>
+
+        <div id="main">
+            <div class='chapters-wrapper'>
+                  <nav id='chapters'>
+                      <div class='masthead-title'></div>
+                      <ul class='masthead'>
+                          <li>
+                              <a href='index.html'>
+                                  <div class='nav-tcontents'>
+                                      <img src='images/nav-contents.png' /></br>
+                                  main
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex37.html#video'>
+                                  <div class='nav-play-video' id="#video_toggle_icon">
+                                      <img src='images/nav-play.png' /><br/>
+                                      play video
+                                      <div class='line-2'>(this chapter)</div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex37.html' id='prev_link'>
+                                  <div class='nav-previous'>
+                                      <img src='images/nav-previous.png' /></br>
+                                      previous
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='ex37.html' id='next_link'>
+                                  <div class='nav-next'>
+                                      <img src='images/nav-next.png' /></br>
+                                      next
+                                  </div>
+                              </a>
+                          </li>
+                          <li><!-- AMBULANCE ICON -->
+                              <a href='help.html' id=''>
+                                  <div class='ambulance'>
+                                      <img src='images/help-ambulance.png' /></br>
+                                      help
+                                  </div>
+                              </a>
+                          </li>
+                          <li id="follow">
+                                <a href="https://twitter.com/lzsthw" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-dnt="true">Follow @lzsthw</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                           </li>
+
+                      </ul><!-- /.masthead -->
+                      <!--<img src='images/fa-bullhorn.png' />-->
+                  </nav><!-- /.chapters -->
+            </div><!-- /.chapters-wrapper -->
+
+        <!--- RST STARTS -->
+            <h1 class="title">Exercise 37: Symbol Review</h1>
+            <p>It's time to review the symbols and Ruby words you know and to try to pick up a few more for the next few lessons.  I have written out all the Ruby symbols and keywords that are important to know.</p>
+<p>In this lesson take each keyword and first try to write out what it does from memory.  Next, search online for it and see what it really does.  This may be difficult because some of these are difficult to search for, but try anyway.</p>
+<p>If you get one of these wrong from memory, make an index card with the correct definition and try to &quot;correct&quot; your memory.</p>
+<p>Finally, use each of these in a small Ruby program, or as many as you can get done.  The goal is to find out what the symbol does, make sure you got it right, correct it if you do not, then use it to lock it in.</p>
+<div class="section" id="keywords">
+<h1>Keywords</h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="52%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Keyword</th>
+<th class="head">Description</th>
+<th class="head">Example</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">BEGIN</tt></td>
+<td>Run this block when the script starts.</td>
+<td><tt class="docutils literal">BEGIN { puts &quot;hi&quot; }</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">END</tt></td>
+<td>Run this block when the script is done.</td>
+<td><tt class="docutils literal">END { puts &quot;hi&quot; }</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">alias</tt></td>
+<td>Create another name for a function.</td>
+<td><tt class="docutils literal">alias X Y</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">and</tt></td>
+<td>Logical and, but lower priority than <tt class="docutils literal">&amp;&amp;</tt>.</td>
+<td><tt class="docutils literal">puts &quot;Hello&quot; and &quot;Goodbye&quot;</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">begin</tt></td>
+<td>Start a block, usually for exceptions.</td>
+<td><tt class="docutils literal">begin end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">break</tt></td>
+<td>Break out of a loop right now.</td>
+<td><tt class="docutils literal">while true; break; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">case</tt></td>
+<td>Case style conditional, like an if.</td>
+<td><tt class="docutils literal">case X; when Y; else; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">class</tt></td>
+<td>Define a new class.</td>
+<td><tt class="docutils literal">class X; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">def</tt></td>
+<td>Define a new function.</td>
+<td><tt class="docutils literal">def <span class="pre">X();</span> end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">defined?</tt></td>
+<td>Is this class/function/etc. defined already?</td>
+<td><tt class="docutils literal">defined? Class == &quot;constant&quot;</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">do</tt></td>
+<td>Create a block that maybe takes a parameter.</td>
+<td><tt class="docutils literal"><span class="pre">(0..5).each</span> do |x| puts x end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">else</tt></td>
+<td>Else conditional.</td>
+<td><tt class="docutils literal">if X; else; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">elsif</tt></td>
+<td>Else if conditional</td>
+<td><tt class="docutils literal">if X; elsif Y; else; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">end</tt></td>
+<td>Ends blocks, functions, classes, everything.</td>
+<td><tt class="docutils literal">begin end # many others</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">ensure</tt></td>
+<td>Run this code whether an exception happens or not.</td>
+<td><tt class="docutils literal">begin ensure end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">for</tt></td>
+<td>For loop syntax. The <tt class="docutils literal">.each</tt> syntax is preferred.</td>
+<td><tt class="docutils literal">for X in Y; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">if</tt></td>
+<td>If conditional.</td>
+<td><tt class="docutils literal">if X; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">in</tt></td>
+<td>In part of <tt class="docutils literal"><span class="pre">for-loops</span></tt>.</td>
+<td><tt class="docutils literal">for X in Y; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">module</tt></td>
+<td>Define a new module.</td>
+<td><tt class="docutils literal">module X; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">next</tt></td>
+<td>Skip to the next element of a <tt class="docutils literal">.each</tt> iterator.</td>
+<td><tt class="docutils literal"><span class="pre">(0..5).each</span> {|y| next }</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">not</tt></td>
+<td>Logical not. But use <tt class="docutils literal">!</tt> instead.</td>
+<td><tt class="docutils literal">not true == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">or</tt></td>
+<td>Logical or.</td>
+<td><tt class="docutils literal">puts &quot;Hello&quot; or &quot;Goodbye&quot;</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">redo</tt></td>
+<td>Rerun a code block exactly the same.</td>
+<td><tt class="docutils literal"><span class="pre">(0..5).each</span> {|i| redo if i &gt; 2}</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">rescue</tt></td>
+<td>Run this code if an exception happens.</td>
+<td><tt class="docutils literal">begin rescue X; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">retry</tt></td>
+<td>In a rescue clause, says to try the block again.</td>
+<td><tt class="docutils literal"><span class="pre">(0..5).each</span> {|i| retry if i &gt; 2}</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">return</tt></td>
+<td>Returns a value from a function.  Mostly optional.</td>
+<td><tt class="docutils literal">return X</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">self</tt></td>
+<td>The current object, class, or module.</td>
+<td><tt class="docutils literal">defined? self == &quot;self&quot;</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">super</tt></td>
+<td>The parent class of this class.</td>
+<td><tt class="docutils literal">super</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">then</tt></td>
+<td>Can be used with if optionally.</td>
+<td><tt class="docutils literal">if true then puts &quot;hi&quot; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">undef</tt></td>
+<td>Remove a function definition from a class.</td>
+<td><tt class="docutils literal">undef X</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">unless</tt></td>
+<td>Inverse of if.</td>
+<td><tt class="docutils literal">unless false then puts &quot;not&quot; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">until</tt></td>
+<td>Inverse of while, execute block as long as false.</td>
+<td><tt class="docutils literal">until false; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">when</tt></td>
+<td>Part of case conditionals.</td>
+<td><tt class="docutils literal">case X; when Y; else; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">while</tt></td>
+<td>While loop.</td>
+<td><tt class="docutils literal">while true; end</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">yield</tt></td>
+<td>Pause and transfer control to the code block.</td>
+<td><tt class="docutils literal">yield</tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="data-types">
+<h1>Data Types</h1>
+<p>For data types, write out what makes up each one.  For example, with strings write out how you create a string.  For numbers write out a few numbers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="54%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Type</th>
+<th class="head">Description</th>
+<th class="head">Example</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">true</tt></td>
+<td>True boolean value.</td>
+<td><tt class="docutils literal">true or false == true</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">false</tt></td>
+<td>False boolean value.</td>
+<td><tt class="docutils literal">false and true == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">nil</tt></td>
+<td>Represents &quot;nothing&quot; or &quot;no value&quot;.</td>
+<td><tt class="docutils literal">x = nil</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">strings</tt></td>
+<td>Stores textual information.</td>
+<td><tt class="docutils literal">x = &quot;hello&quot;</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">numbers</tt></td>
+<td>Stores integers.</td>
+<td><tt class="docutils literal">i = 100</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">floats</tt></td>
+<td>Stores decimals.</td>
+<td><tt class="docutils literal">i = 10.389</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">arrays</tt></td>
+<td>Stores a list of things.</td>
+<td><tt class="docutils literal">j = [1,2,3,4]</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">hashes</tt></td>
+<td>Stores a key=value mapping of things.</td>
+<td><tt class="docutils literal">e = {'x' =&gt; 1, 'y' =&gt; 2}</tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="string-escape-sequences">
+<h1>String Escape Sequences</h1>
+<p>For string escape sequences, use them in strings to make sure they do what you think they do.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Escape</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">\\</tt></td>
+<td>Backslash</td>
+</tr>
+<tr><td><tt class="docutils literal">\'</tt></td>
+<td>Single-quote</td>
+</tr>
+<tr><td><tt class="docutils literal">\&quot;</tt></td>
+<td>Double-quote</td>
+</tr>
+<tr><td><tt class="docutils literal">\a</tt></td>
+<td>Bell</td>
+</tr>
+<tr><td><tt class="docutils literal">\b</tt></td>
+<td>Backspace</td>
+</tr>
+<tr><td><tt class="docutils literal">\f</tt></td>
+<td>Formfeed</td>
+</tr>
+<tr><td><tt class="docutils literal">\n</tt></td>
+<td>Newline</td>
+</tr>
+<tr><td><tt class="docutils literal">\r</tt></td>
+<td>Carriage</td>
+</tr>
+<tr><td><tt class="docutils literal">\t</tt></td>
+<td>Tab</td>
+</tr>
+<tr><td><tt class="docutils literal">\v</tt></td>
+<td>Vertical tab</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="operators">
+<h1>Operators</h1>
+<p>Some of these may be unfamiliar to you, but look them up anyway.  Find out what they do, and if you still can't figure it out, save it for later.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="54%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operator</th>
+<th class="head">Description</th>
+<th class="head">Example</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal">+</tt></td>
+<td>Add</td>
+<td><tt class="docutils literal">2 + 4 == 6</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">-</tt></td>
+<td>Subtract</td>
+<td><tt class="docutils literal">2 - 4 == 2</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">*</tt></td>
+<td>Multiply</td>
+<td><tt class="docutils literal">2 * 4 == 8</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">**</tt></td>
+<td>Power of</td>
+<td><tt class="docutils literal">2 ** 4 == 16</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">/</tt></td>
+<td>Divide</td>
+<td><tt class="docutils literal">2 / 4.0 == 0.5</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">%</tt></td>
+<td>Modulus</td>
+<td><tt class="docutils literal">2 % 4 == 2</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&gt;</tt></td>
+<td>Greater than</td>
+<td><tt class="docutils literal">4 &gt; 4 == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">.</tt></td>
+<td>Dot access</td>
+<td><tt class="docutils literal"><span class="pre">&quot;1&quot;.to_i</span> == 1</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">::</tt></td>
+<td>Colon access</td>
+<td><tt class="docutils literal"><span class="pre">Module::Class</span></tt></td>
+</tr>
+<tr><td><tt class="docutils literal">[]</tt></td>
+<td>List brackets</td>
+<td><tt class="docutils literal">[1,2,3,4]</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">!</tt></td>
+<td>Not</td>
+<td><tt class="docutils literal">!true == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&lt;</tt></td>
+<td>Less than</td>
+<td><tt class="docutils literal">4 &lt; 4 == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&gt;</tt></td>
+<td>Greater than</td>
+<td><tt class="docutils literal">4 &lt; 4 == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&gt;=</tt></td>
+<td>Greater than equal</td>
+<td><tt class="docutils literal">4 &gt;= 4 == true</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&lt;=</tt></td>
+<td>Less than equal</td>
+<td><tt class="docutils literal">4 &lt;= 4 == true</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&lt;=&gt;</tt></td>
+<td>Comparison</td>
+<td><tt class="docutils literal">4 &lt;=&gt; 4 == 0</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">==</tt></td>
+<td>Equal</td>
+<td><tt class="docutils literal">4 == 4 == true</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">===</tt></td>
+<td>Equality</td>
+<td><tt class="docutils literal">4 === 4 == true</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">!=</tt></td>
+<td>Not equal</td>
+<td><tt class="docutils literal">4 != 4 == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&amp;&amp;</tt></td>
+<td>Logical and (higher precedence)</td>
+<td><tt class="docutils literal">true &amp;&amp; false == false</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">||</tt></td>
+<td>Logical or (higher precedence)</td>
+<td><tt class="docutils literal">true || false == true</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">..</tt></td>
+<td>Range inclusive</td>
+<td><tt class="docutils literal"><span class="pre">(0..3).to_a</span> == [0, 1, 2, 3]</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">...</tt></td>
+<td>Range non-inclusive</td>
+<td><tt class="docutils literal"><span class="pre">(0...3).to_a</span> == [0, 1, 2]</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&#64;</tt></td>
+<td>Object scope</td>
+<td><tt class="docutils literal">&#64;var ; &#64;&#64;classvar</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">&#64;&#64;</tt></td>
+<td>Class scope</td>
+<td><tt class="docutils literal">&#64;var ; &#64;&#64;classvar</tt></td>
+</tr>
+<tr><td><tt class="docutils literal">$</tt></td>
+<td>Global scope</td>
+<td><tt class="docutils literal">$stdin</tt></td>
+</tr>
+</tbody>
+</table>
+<p>Spend about a week on this, but if you finish faster that's great.  The point is to try to get coverage on all these symbols and make sure they are locked in your head.  What's also important is to find out what you <em>do not</em> know so you can fix it later.</p>
+</div>
+<div class="section" id="reading-code">
+<h1>Reading Code</h1>
+<p>Now find some Ruby code to read.  You should be reading any Ruby code you can and trying to steal ideas that you find.  You actually should have enough knowledge to be able to read, but maybe not understand what the code does.  What this lesson teaches is how to apply things you have learned to understand other people's code.</p>
+<p>First, print out the code you want to understand.  Yes, print it out, because your eyes and brain are more used to reading paper than computer screens.  Make sure you print a few pages at a time.</p>
+<p>Second, go through your printout and take notes of the following:</p>
+<ol class="arabic simple">
+<li>Functions and what they do.</li>
+<li>Where each variable is first given a value.</li>
+<li>Any variables with the same names in different parts of the program.  These may be trouble later.</li>
+<li>Any <tt class="docutils literal"><span class="pre">if-statements</span></tt> without else clauses.  Are they right?</li>
+<li>Any <tt class="docutils literal"><span class="pre">while-loops</span></tt> that might not end.</li>
+<li>Any parts of code that you can't understand for whatever reason.</li>
+</ol>
+<p>Third, once you have all of this marked up, try to explain it to yourself by writing comments as you go.  Explain the functions, how they are used, what variables are involved and anything you can to figure this code out.</p>
+<p>Lastly, on all of the difficult parts, trace the values of each variable line by line, function by function.  In fact, do another printout and write in the margin the value of each variable that you need to &quot;trace.&quot;</p>
+<p>Once you have a good idea of what the code does, go back to the computer and read it again to see if you find new things.  Keep finding more code and doing this until you do not need the printouts anymore.</p>
+</div>
+<div class="section" id="study-drills">
+<h1>Study Drills</h1>
+<ol class="arabic simple">
+<li>Find out what a &quot;flow chart&quot; is and draw a few.</li>
+<li>If you find errors in code you are reading, try to fix them and send the author your changes.</li>
+<li>Another technique for when you are not using paper is to put <tt class="docutils literal">#</tt> comments with your notes in the code.  Sometimes, these could become the actual comments to help the next person.</li>
+</ol>
+</div>
+<div class="section" id="common-student-questions">
+<h1>Common Student Questions</h1>
+<dl class="docutils">
+<dt>How would I search for these things online?</dt>
+<dd>Simply put &quot;ruby&quot; before anything you want to find.  For example, to find <tt class="docutils literal">yield</tt> search for  <tt class="docutils literal">ruby yield</tt>.</dd>
+</dl>
+</div>
+        <!-- RST ENDS -->
+
+            <!-- /.help-icon -->
+        <div id="video_holder" style="display:hidden">
+            <h1>Video</h1>
+            <div id="video" class="row inner">
+                <div class="small-12 small-centered columns">
+                    <div data-paydiv_product="5" id='paydiv'>
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div><!-- /#main -->
+
+        <div class='ad-deck gold' id="footer">
+            <ul class='retailers clearfix'>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href='https://paydiv.io/access/buy/5/'>
+                        <div class='retailer-name'>Zed Shaw</div>
+                        <div class='book-type'>PDF + Videos + Updates</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://www.amazon.com/gp/product/032188499X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=032188499X&linkCode=as2&tag=lepythhawa-20&linkId=IDFZUUSBQWJ7ETF7">
+                        <div class='retailer-name'>Amazon</div>
+                        <div class='book-type'>Paper + DVD</div>
+                        <div class='book-price'>$26.67</div>
+                    </a>
+                </li>
+                <li class=''>
+                    <a href="http://learnpythonthehardway.org/book/">
+                        <div class='retailer-name'>Interested In Python?</div>
+                        <div class='book-type'>Python is also a great language.</div>
+                        <div class='book-price'>Learn Python The Hard Way</div>
+                    </a>
+                </li>
+            </ul><!-- /.places -->
+        </div><!-- /#ad-deck -->
+
+        <script src="javascripts/jquery.js"></script>
+        <script src="index.js"></script>
+        <script src="https://paydiv.io/static/jzed.js"></script>
+        <script src="https://paydiv.io/static/js/videojs/video.js"></script>
+        <link rel="stylesheet" href="https://paydiv.io/static/js/videojs/video-js.css">
+        <script src="https://paydiv.io/static/api/v1/paydiv.js"></script>
+        <script src="javascripts/app.js"></script>
+        <script src="javascripts/littools.js"></script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24168052-9']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        </body>
+</html>
+
